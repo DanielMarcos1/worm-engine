@@ -1,19 +1,19 @@
 #[derive(Debug, Clone, Copy)]
-struct Vector3d {
-    x: f32,
-    y: f32,
-    z: f32,
+pub struct Vector3d {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
 }
 
 impl Vector3d {
 
     // Constructor of the trait
-    fn new(x: f32, y: f32, z: f32) -> Self {
+    pub fn new(x: f32, y: f32, z: f32) -> Self {
         Self {x, y, z}
     }
 
     // A vector of 3d must have basic arithmetic calculations to represent it's location on the environment
-    fn add(&self, other: Vector3d) -> Vector3d {
+    pub fn add(&self, other: Vector3d) -> Vector3d {
         Vector3d {
             x: &self.x + other.x,
             y: &self.y + other.y,
@@ -21,16 +21,16 @@ impl Vector3d {
         }
     }
 
-    fn subtract(&self, other: Vector3d) -> Vector3d {
+    pub fn subtract(&self, other: Vector3d) -> Vector3d {
         Vector3d {
-            x: &self.x + other.x,
-            y: &self.y + other.y,
-            z: &self.z + other.z,
+            x: &self.x - other.x,
+            y: &self.y - other.y,
+            z: &self.z - other.z,
         }
     }
 
     // Scalar multiplication has the purpose to control vector speed without changing its direction
-    fn multiplication(&self, scalar: f32) -> Vector3d {
+    pub fn scale(&self, scalar: f32) -> Vector3d {
         Vector3d {
             x: &self.x * scalar,
             y: &self.y * scalar,
@@ -39,12 +39,12 @@ impl Vector3d {
     }
 
     // This represents the length or size of the vector
-    fn magnitude(&self) -> f32 {
+    pub fn magnitude(&self) -> f32 {
         (self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
     }
 
     // It points the direction of the vector without the magnitude
-    fn normalize(&self) -> Vector3d {
+    pub fn normalize(&self) -> Vector3d {
         let mag = self.magnitude();
         if mag == 0.0 {
             *self // Return original
@@ -58,13 +58,13 @@ impl Vector3d {
     }
 
     // Look at where the vector is pointing at and it's relative direction compared to other vectors
-    fn dot(&self, other: Vector3d) -> f32 {
-        self.x * other.x + self.y * other.y + self.z + other.z
+    pub fn dot(&self, other: Vector3d) -> f32 {
+        self.x * other.x + self.y * other.y + self.z * other.z
     }
 
     // This can be used to calculate many things like perpendicular directions,
     // surface normals, torque, rotational force and orthogonal basis vectors.
-    fn cross(&self, other: Vector3d) -> Vector3d {
+    pub fn cross(&self, other: Vector3d) -> Vector3d {
         Vector3d {
             x: self.y * other.z - self.z * other.y,
             y: self.z * other.x - self.x * other.z,
