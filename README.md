@@ -5,13 +5,6 @@ My homemade 3D physics engine. This project aims to create a fully functional ph
 ## Roadmap for 1.0.0
 
 Each version have a goal to be considered "ready", any bugs found in those positions will lead to hotfixes, if it does, the goal will go from "0.x.0" to "0.x.x".
-
-### 0.1.0
-
-- Vector and Matrix math for operations like positions, velocities and force.
-
-- Collision detection for shapes
-
 ### 0.2.0
 
 - Rigid body dinamics movement
