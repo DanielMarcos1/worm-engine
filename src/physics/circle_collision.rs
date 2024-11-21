@@ -40,15 +40,15 @@ impl Circle {
         }
         
         // Normal vector (Line connecting the centers)
-        let normal = (self.center.subtract(other.center)).normalize();
+        let normal = (self.center.subtract(&other.center)).normalize();
 
         if normal.magnitude() == 0.0 {
             return
         }
         
-        let relative_velocity = self.velocity.subtract(other.velocity);
+        let relative_velocity = self.velocity.subtract(&other.velocity);
 
-        let velocity_along_normal = relative_velocity.dot(normal);
+        let velocity_along_normal = relative_velocity.dot(&normal);
 
         if velocity_along_normal > 0.0 {
             return
@@ -60,8 +60,8 @@ impl Circle {
         
         // Apply impulse
         let impulse = normal.scale(impulse_scalar);
-        self.velocity = self.velocity.add(impulse.scale(1.0 / self.mass));
-        other.velocity = other.velocity.subtract(impulse.scale(1.0 / other.mass));
+        self.velocity = self.velocity.add(&impulse.scale(1.0 / self.mass));
+        other.velocity = other.velocity.subtract(&impulse.scale(1.0 / other.mass));
         
     }
 }
