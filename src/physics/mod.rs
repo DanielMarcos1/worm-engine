@@ -1,3 +1,9 @@
 pub mod circle_collision;
 pub mod aabb_collision;
 pub mod sat_collision;
+pub mod rigid_body;
+pub mod integrator;
+pub mod collision_resolution;
+pub mod world;
+pub mod constraint;
+pub mod soft_body;
