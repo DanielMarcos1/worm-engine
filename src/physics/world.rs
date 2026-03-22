@@ -1,5 +1,5 @@
 use crate::{geometry::vector::Vector3d, physics::rigid_body::RigidBody};
-
+use rayon::prelude::*;
 
 pub struct World {
     pub bodies: Vec<RigidBody>,
@@ -19,11 +19,11 @@ impl World {
     }
 
     pub fn step(&mut self) {
-        for body in self.bodies.iter_mut() {
+        // Implement rayon parallel iterators for physics step resolution (Task 3.2)
+        let dt = self.time_step;
+        self.bodies.par_iter_mut().for_each(|body| {
             body.apply_gravity();
-            body.update(self.time_step);
-        }
+            body.update(dt);
+        });
     }
-
-
 }
