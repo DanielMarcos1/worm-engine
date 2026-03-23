@@ -2,7 +2,7 @@ use super::vector::Vector3d;
 
 
 // TODO: Check if the polygon is 3d or 2d
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Polygon {
     pub vertices: Vec<Vector3d>, // List of vertices of the polygon
 }
