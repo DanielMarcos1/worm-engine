@@ -1,6 +1,7 @@
-use wide::f32x4;
+use crate::physics::math;
 
-#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+#[derive(Debug, Clone, Copy, bytemuck::Pod, bytemuck::Zeroable)]
 pub struct Vector3d {
     pub x: f32,
     pub y: f32,
@@ -55,7 +56,7 @@ impl Vector3d {
 
     // This represents the length or size of the vector
     pub fn magnitude(&self) -> f32 {
-        self.length_squared().sqrt()
+        math::sqrt(self.x * self.x + self.y * self.y + self.z * self.z)
     }
 
     // It points the direction of the vector without the magnitude
@@ -97,7 +98,7 @@ impl Vector3d {
     pub fn angle_between(&self, other: &Vector3d) -> f32 {
         let dot = self.dot(other);
         let magnitudes = self.magnitude() * other.magnitude();
-        (dot / magnitudes).acos()
+        math::acos(dot / magnitudes)
     }
 
     pub fn distance_to(&self, other: &Vector3d) -> f32 {
