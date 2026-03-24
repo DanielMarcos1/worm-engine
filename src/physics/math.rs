@@ -1,17 +1,36 @@
 use libm;
 
-pub fn sqrt(x: f32) -> f32 {
-    libm::sqrtf(x)
+pub trait DeterministicMath {
+    fn d_sqrt(self) -> Self;
+    fn d_acos(self) -> Self;
+    fn d_abs(self) -> Self;
+    fn d_min(self, other: Self) -> Self;
+    fn d_max(self, other: Self) -> Self;
 }
 
-pub fn acos(x: f32) -> f32 {
-    libm::acosf(x)
-}
+impl DeterministicMath for f32 {
+    #[inline(always)]
+    fn d_sqrt(self) -> Self {
+        libm::sqrtf(self)
+    }
 
-pub fn cos(x: f32) -> f32 {
-    libm::cosf(x)
-}
+    #[inline(always)]
+    fn d_acos(self) -> Self {
+        libm::acosf(self)
+    }
 
-pub fn sin(x: f32) -> f32 {
-    libm::sinf(x)
+    #[inline(always)]
+    fn d_abs(self) -> Self {
+        libm::fabsf(self)
+    }
+
+    #[inline(always)]
+    fn d_min(self, other: Self) -> Self {
+        libm::fminf(self, other)
+    }
+
+    #[inline(always)]
+    fn d_max(self, other: Self) -> Self {
+        libm::fmaxf(self, other)
+    }
 }

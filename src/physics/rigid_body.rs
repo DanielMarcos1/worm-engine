@@ -1,17 +1,28 @@
-// This file is kept for backwards compatibility or high-level entity management
-// but data is now stored in `World`'s `RigidBodyComponents` using SoA layout.
+use crate::{geometry::vector::Vector3d, physics::{constants::GRAVITY, components::RigidBodyComponents}};
 
-use crate::geometry::polygon::Polygon;
-
-#[derive(Debug, Clone)]
-pub struct RigidBodyDescriptor {
-    pub shape: Polygon,
-    pub mass: f32,
+pub fn apply_force(components: &mut RigidBodyComponents, index: usize, force: Vector3d) {
+    components.forces[index] = components.forces[index].add(&force);
 }
 
-impl RigidBodyDescriptor {
-    pub fn new(shape: Polygon, mass: f32) -> Self {
-        assert!(mass > 0.0, "Mass must be greater than zero");
-        Self { shape, mass }
+pub fn apply_gravity(components: &mut RigidBodyComponents, index: usize) {
+    let force = GRAVITY.scale(components.masses[index]);
+    components.forces[index] = components.forces[index].add(&force);
+}
+
+pub fn update(components: &mut RigidBodyComponents, index: usize, dt: f32) {
+    let mass = components.masses[index];
+    let force = components.forces[index];
+
+    let mut accel = force.scale(1.0 / mass);
+    components.accelerations[index] = accel;
+
+    let mut vel = components.velocities[index];
+    vel = vel.add(&accel.scale(dt));
+    components.velocities[index] = vel;
+
+    for vertex in &mut components.shapes[index].vertices {
+        *vertex = vertex.add(&vel.scale(dt));
     }
+
+    components.forces[index] = Vector3d::zero();
 }

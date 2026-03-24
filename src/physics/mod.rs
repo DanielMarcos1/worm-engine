@@ -1,10 +1,9 @@
 pub mod aabb_collision;
-pub mod ccd;
-pub mod circle_collision;
+pub mod sat_collision;
+pub mod rigid_body;
 pub mod components;
 pub mod constants;
 pub mod world;
 pub mod math;
-pub mod components;
 pub mod ccd;
 pub mod gpu;
