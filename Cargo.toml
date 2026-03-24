@@ -4,3 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+bytemuck = { version = "1.25.0", features = ["derive"] }
+futures-channel = "0.3.32"
+libm = "0.2.16"
+rayon = "1.11.0"
+wgpu = "29.0.0"
+wide = "1.2.0"
