@@ -22,7 +22,7 @@
 **Reference**: Issue Task 1 CCD
 **Assignment**: Physics Engineer needs to resolve/issue/test this feature.
 
-### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring
+### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
 **Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
 **Acceptance Criteria**:
 - Memory layout is optimized for cache coherency.
@@ -42,6 +42,7 @@
 **Acceptance Criteria**:
 - Engine scales linearly up to 16 threads on supported hardware.
 - Thread synchronization does not introduce unresolvable latency.
+- SIMD vectorization utilizes a Structure of Arrays (SoA) approach rather than AoS on individual math primitives.
 
 **Files to Create/Edit**:
 - Cargo.toml
