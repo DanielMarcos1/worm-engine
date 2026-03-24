@@ -1,45 +1,28 @@
-use crate::{geometry::{vector::Vector3d, polygon::Polygon}, physics::constants::GRAVITY};
+use crate::{geometry::vector::Vector3d, physics::{constants::GRAVITY, components::RigidBodyComponents}};
 
-#[derive(Debug)]
-pub struct RigidBody {
-    pub shape: Polygon,
-    pub mass: f32,
-    pub velocity: Vector3d,
-    pub acceleration: Vector3d,
-    pub forces: Vector3d,
+pub fn apply_force(components: &mut RigidBodyComponents, index: usize, force: Vector3d) {
+    components.forces[index] = components.forces[index].add(&force);
 }
 
-impl RigidBody {
-    
-    pub fn new(shape: Polygon, mass: f32) -> RigidBody {
-        assert!(mass > 0.0, "Mass must be greater than zero");
-        RigidBody {
-            shape,
-            mass,
-            velocity: Vector3d::zero(),
-            acceleration: Vector3d::zero(),
-            forces: Vector3d::zero(),
-        }
+pub fn apply_gravity(components: &mut RigidBodyComponents, index: usize) {
+    let force = GRAVITY.scale(components.masses[index]);
+    components.forces[index] = components.forces[index].add(&force);
+}
+
+pub fn update(components: &mut RigidBodyComponents, index: usize, dt: f32) {
+    let mass = components.masses[index];
+    let force = components.forces[index];
+
+    let mut accel = force.scale(1.0 / mass);
+    components.accelerations[index] = accel;
+
+    let mut vel = components.velocities[index];
+    vel = vel.add(&accel.scale(dt));
+    components.velocities[index] = vel;
+
+    for vertex in &mut components.shapes[index].vertices {
+        *vertex = vertex.add(&vel.scale(dt));
     }
 
-    pub fn apply_force(&mut self, force: Vector3d) {
-        self.forces = self.forces.add(&force)
-    }
-
-    pub fn apply_gravity(&mut self) {
-        self.forces = self.forces.add(&GRAVITY.scale(self.mass));
-    }
-
-    pub fn update(&mut self, dt: f32) {
-
-        self.acceleration = self.forces.scale(1.0 / self.mass);
-
-        self.velocity = self.velocity.add(&self.acceleration.scale(dt));
-
-        for vertex in &mut self.shape.vertices {
-            *vertex = vertex.add(&self.velocity.scale(dt));
-        }
-
-        self.forces = Vector3d::zero();
-    }
+    components.forces[index] = Vector3d::zero();
 }
