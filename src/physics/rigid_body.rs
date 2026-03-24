@@ -1,4 +1,7 @@
-use crate::{geometry::{vector::Vector3d, polygon::Polygon}, physics::constants::GRAVITY};
+use crate::{
+    geometry::{polygon::Polygon, vector::Vector3d},
+    physics::constants::GRAVITY,
+};
 
 #[derive(Debug)]
 pub struct RigidBody {
@@ -10,7 +13,6 @@ pub struct RigidBody {
 }
 
 impl RigidBody {
-    
     pub fn new(shape: Polygon, mass: f32) -> RigidBody {
         assert!(mass > 0.0, "Mass must be greater than zero");
         RigidBody {
@@ -31,7 +33,6 @@ impl RigidBody {
     }
 
     pub fn update(&mut self, dt: f32) {
-
         self.acceleration = self.forces.scale(1.0 / self.mass);
 
         self.velocity = self.velocity.add(&self.acceleration.scale(dt));
