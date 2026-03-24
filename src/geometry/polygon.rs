@@ -1,6 +1,5 @@
 use super::vector::Vector3d;
 
-
 // TODO: Check if the polygon is 3d or 2d
 #[derive(Debug, Clone)]
 pub struct Polygon {
@@ -23,4 +22,3 @@ impl Polygon {
         edges
     }
 }
-
