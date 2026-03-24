@@ -1,74 +1,45 @@
-use crate::geometry::vector::Vector3d;
+use crate::{geometry::{vector::Vector3d, polygon::Polygon}, physics::constants::GRAVITY};
 
-#[derive(Debug, Clone)]
-pub enum Shape {
-    Circle(f32), // radius
-    AABB(Vector3d), // half_extents
-}
-
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 pub struct RigidBody {
-    pub position: Vector3d,
+    pub shape: Polygon,
+    pub mass: f32,
     pub velocity: Vector3d,
     pub acceleration: Vector3d,
-    pub mass: f32,
-    pub inverse_mass: f32,
-    pub force_accumulator: Vector3d,
-    pub gravity_scale: f32,
-    pub damping: f32, // Air resistance
-    pub friction: f32,
-    pub restitution: f32,
-    pub shape: Shape,
+    pub forces: Vector3d,
 }
 
 impl RigidBody {
-    pub fn new(position: Vector3d, mass: f32, shape: Shape) -> Self {
-        let inverse_mass = if mass > 0.0 { 1.0 / mass } else { 0.0 };
-        Self {
-            position,
-            velocity: Vector3d::new(0.0, 0.0, 0.0),
-            acceleration: Vector3d::new(0.0, 0.0, 0.0),
-            mass,
-            inverse_mass,
-            force_accumulator: Vector3d::new(0.0, 0.0, 0.0),
-            gravity_scale: 1.0,
-            damping: 0.98,
-            friction: 0.5,
-            restitution: 0.5,
+    
+    pub fn new(shape: Polygon, mass: f32) -> RigidBody {
+        assert!(mass > 0.0, "Mass must be greater than zero");
+        RigidBody {
             shape,
+            mass,
+            velocity: Vector3d::zero(),
+            acceleration: Vector3d::zero(),
+            forces: Vector3d::zero(),
         }
     }
 
-    pub fn apply_force(&mut self, force: &Vector3d) {
-        self.force_accumulator = self.force_accumulator.add(force);
+    pub fn apply_force(&mut self, force: Vector3d) {
+        self.forces = self.forces.add(&force)
     }
 
-    pub fn clear_forces(&mut self) {
-        self.force_accumulator = Vector3d::new(0.0, 0.0, 0.0);
+    pub fn apply_gravity(&mut self) {
+        self.forces = self.forces.add(&GRAVITY.scale(self.mass));
     }
 
-    pub fn update(&mut self, dt: f32, gravity: &Vector3d) {
-        if self.inverse_mass <= 0.0 {
-            return; // Static body
-        }
+    pub fn update(&mut self, dt: f32) {
 
-        // Add gravity to the force accumulator
-        let gravity_force = gravity.scale(self.mass * self.gravity_scale);
-        let total_force = self.force_accumulator.add(&gravity_force);
+        self.acceleration = self.forces.scale(1.0 / self.mass);
 
-        // a = F / m
-        self.acceleration = total_force.scale(self.inverse_mass);
-
-        // v = v + a * dt
         self.velocity = self.velocity.add(&self.acceleration.scale(dt));
 
-        // Apply damping (air resistance)
-        self.velocity = self.velocity.scale(self.damping.powf(dt));
+        for vertex in &mut self.shape.vertices {
+            *vertex = vertex.add(&self.velocity.scale(dt));
+        }
 
-        // p = p + v * dt
-        self.position = self.position.add(&self.velocity.scale(dt));
-
-        // Clear forces after applying them
-        self.clear_forces();
+        self.forces = Vector3d::zero();
     }
 }

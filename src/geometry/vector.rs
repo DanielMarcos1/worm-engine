@@ -12,6 +12,10 @@ impl Vector3d {
         Self {x, y, z}
     }
 
+    pub fn zero() -> Self {
+        Self {x: 0.0, y: 0.0, z: 0.0}
+    }
+
     // A vector of 3d must have basic arithmetic calculations to represent it's location on the environment
     pub fn add(&self, other: &Vector3d) -> Vector3d {
         Vector3d {
