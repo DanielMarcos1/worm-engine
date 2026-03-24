@@ -102,3 +102,15 @@
 **Development Stack**: Rust, `rayon`, `std::simd`, WGPU
 **Special Instructions**: If CCD or GPU acceleration threatens the core roadmap, they will be modularized as optional add-ons rather than blocking 1.0.0. Focus on front-loading investment in architectural refactoring (DOD) to minimize technical debt.
 **Timeline Expectations**: Maintain 95% on-time delivery. Tasks should be structured as agile milestones to quickly identify and mitigate risks.
+
+### [x] Task 0: Project Scope Analysis and SOTA Strategy Formulation
+**Description**: Analyze the project scope and create an issue on GitHub detailing what needs to be done to maintain the project scope and achieve State-of-the-Art (SOTA) level for the Worm Engine.
+**Acceptance Criteria**:
+- A comprehensive strategic review document (`ISSUE_SCOPE_AND_SOTA.md`) is created adopting the "Studio Producer" persona.
+- The review uses the `Strategic Portfolio Review` template to analyze and balance the core v1.0.0 roadmap with Tier 1 & 2 SOTA initiatives.
+- Resource allocation, strategic impact, and risk management are detailed.
+
+**Files Created/Edited**:
+- `ISSUE_SCOPE_AND_SOTA.md`
+
+**Assigned Agency Role**: Studio Producer
