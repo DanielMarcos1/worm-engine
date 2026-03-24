@@ -28,7 +28,7 @@
 - src/physics/world.rs
 
 **Reference**: Tier 1 Projects - Continuous Collision Detection (CCD)
-**Assigned Agency Role**: Physics Engineer
+**Assigned Agency Role**: Physics Engineer needs to resolve/issue/test this feature.
 
 ### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring
 **Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
@@ -43,7 +43,7 @@
 - src/physics/components.rs (new file)
 
 **Reference**: Tier 1 Projects - Data-Oriented Design (DOD) & ECS Compatibility
-**Assigned Agency Role**: Architecture Lead
+**Assigned Agency Role**: Architecture Lead needs to resolve/issue/test this feature.
 
 ### [ ] Task 3: Multithreading and SIMD Vectorization
 **Description**: Integrate `rayon` for task-based parallelism and `std::simd` for vectorizing math operations in the physics pipeline.
@@ -58,7 +58,7 @@
 - src/physics/world.rs
 
 **Reference**: Tier 1 Projects - Multithreading and SIMD Vectorization
-**Assigned Agency Role**: Systems Engineer
+**Assigned Agency Role**: Systems Engineer needs to resolve/issue/test this feature.
 
 ### [ ] Task 4: Cross-Platform Determinism Setup
 **Description**: Implement strict floating-point math control and deterministic solver execution across multiple architectures.
@@ -73,7 +73,7 @@
 - Tests related to cross-platform execution.
 
 **Reference**: Tier 2 Projects - Cross-Platform Determinism
-**Assigned Agency Role**: Systems Engineer
+**Assigned Agency Role**: Systems Engineer needs to resolve/issue/test this feature.
 
 ### [ ] Task 5: GPU Acceleration (Compute Shaders) Integration
 **Description**: Future-proof the engine by integrating WGPU for GPU-accelerated compute shaders, initially targeting massive scale simulations like soft-bodies or fluids.
@@ -88,7 +88,7 @@
 - shaders/compute.wgsl (new file)
 
 **Reference**: Tier 2 Projects - GPU Acceleration (Compute Shaders)
-**Assigned Agency Role**: Graphics Engineer
+**Assigned Agency Role**: Graphics Engineer needs to resolve/issue/test this feature.
 
 ## Quality Requirements
 - [ ] No background processes in any commands - NEVER append `&`
