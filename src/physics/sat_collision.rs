@@ -4,7 +4,6 @@ use crate::geometry::polygon::Polygon;
 use crate::geometry::vector::Vector3d;
 
 pub fn are_polygons_colliding(poly1: &Polygon, poly2: &Polygon) -> Option<Vector3d> {
-    
     fn project_onto_axis(vertices: &[Vector3d], axis: &Vector3d) -> (f32, f32) {
         vertices.iter().map(|v| v.dot(axis)).fold(
             (f32::INFINITY, f32::NEG_INFINITY),

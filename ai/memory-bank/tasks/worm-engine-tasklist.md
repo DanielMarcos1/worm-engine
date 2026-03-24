@@ -7,7 +7,7 @@
 
 ## Development Tasks
 
-### [ ] Task 1: Continuous Collision Detection (CCD) Implementation
+### [ ] Task 1: Continuous Collision Detection (CCD) Implementation (30-60 minutes)
 **Description**: Implement Continuous Collision Detection to prevent "tunneling" at high velocities. This involves calculating time of impact (TOI) between moving bodies.
 **Acceptance Criteria**:
 - 0% tunneling observed at velocities up to 1000m/s.
@@ -22,7 +22,7 @@
 **Reference**: Tier 1 Projects - Continuous Collision Detection (CCD)
 **Assigned Role**: **[Physics Engineer]** needs to resolve/issue/test this feature.
 
-### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring
+### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
 **Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
 **Acceptance Criteria**:
 - Memory layout is optimized for cache coherency.
@@ -68,7 +68,7 @@
 **Reference**: Tier 2 Projects - Cross-Platform Determinism
 **Assigned Role**: **[Systems Engineer]** needs to resolve/issue/test this feature.
 
-### [ ] Task 5: GPU Acceleration (Compute Shaders) Integration
+### [ ] Task 5: GPU Acceleration (Compute Shaders) Integration (30-60 minutes)
 **Description**: Future-proof the engine by integrating WGPU for GPU-accelerated compute shaders, initially targeting massive scale simulations like soft-bodies or fluids.
 **Acceptance Criteria**:
 - Basic WGPU context is established and integrated into the build.
