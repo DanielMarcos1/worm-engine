@@ -7,6 +7,16 @@ use crate::physics::ccd::calculate_toi_sphere_sphere;
 pub struct World {
     pub bodies: RigidBodyComponents,
     pub time_step: f32,
+    pub next_entity: usize,
+
+    // SoA (Struct of Arrays) layout for DOD
+    pub positions: Vec<Position>,
+    pub velocities: Vec<Velocity>,
+    pub accelerations: Vec<Acceleration>,
+    pub forces: Vec<Force>,
+    pub masses: Vec<Mass>,
+    pub shapes: Vec<Shape>,
+    pub active_entities: Vec<bool>, // true if entity is active
 }
 
 impl World {
@@ -14,6 +24,14 @@ impl World {
         Self {
             bodies: RigidBodyComponents::new(),
             time_step,
+            next_entity: 0,
+            positions: Vec::new(),
+            velocities: Vec::new(),
+            accelerations: Vec::new(),
+            forces: Vec::new(),
+            masses: Vec::new(),
+            shapes: Vec::new(),
+            active_entities: Vec::new(),
         }
     }
 
