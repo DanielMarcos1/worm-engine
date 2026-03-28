@@ -9,6 +9,8 @@ pub struct Vector3d {
     pub z: f32,
 }
 
+use wide::f32x4;
+
 impl Vector3d {
     // Constructor of the trait
     pub fn new(x: f32, y: f32, z: f32) -> Self {
