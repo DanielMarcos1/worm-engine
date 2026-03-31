@@ -1,13 +1,13 @@
 ---
 name: Multithreading and SIMD Vectorization
-about: Integrate rayon and std::simd for performance scaling.
+about: Integrate rayon and wide for performance scaling.
 title: 'Multithreading and SIMD Vectorization'
 labels: 'performance, optimization'
 assignees: ''
 ---
 
 ## Description
-Integrate `rayon` for task-based parallelism and `std::simd` for vectorizing math operations in the physics pipeline.
+Integrate `rayon` for task-based parallelism and `wide` for vectorizing math operations in the physics pipeline.
 
 ## Acceptance Criteria
 - Engine scales linearly up to 16 threads on supported hardware.
@@ -15,7 +15,7 @@ Integrate `rayon` for task-based parallelism and `std::simd` for vectorizing mat
 - Thread synchronization does not introduce unresolvable latency.
 
 ## Assigned Agency Role
-**Systems Engineer** needs to resolve/issue/test this feature.
+Multithreading and SIMD Vectorization needs to be resolved/issued/tested by the Systems Engineer.
 
 ## Files to Create/Edit
 - Cargo.toml

@@ -15,7 +15,7 @@ Future-proof the engine by integrating WGPU for GPU-accelerated compute shaders,
 - CPU pipeline remains stable during GPU execution.
 
 ## Assigned Agency Role
-**Graphics Engineer** needs to resolve/issue/test this feature.
+GPU Acceleration (Compute Shaders) Integration needs to be resolved/issued/tested by the Graphics Engineer.
 
 ## Files to Create/Edit
 - Cargo.toml
