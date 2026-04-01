@@ -7,15 +7,15 @@ assignees: ''
 ---
 
 ## Description
-Implement strict floating-point math control and deterministic solver execution across multiple architectures.
+Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm` for deterministic math operations.
 
 ## Acceptance Criteria
 - Simulation yields identical results across different CPU architectures.
 - CI testing pipeline includes deterministic behavior checks.
-- Fallback mechanisms for non-deterministic math functions are implemented.
+- Fallback mechanisms for non-deterministic math functions are implemented using `libm`.
 
 ## Assigned Agency Role
-**Systems Engineer** needs to resolve/issue/test this feature.
+Cross-Platform Determinism Setup needs to be resolved/issued/tested by the Systems Engineer
 
 ## Files to Create/Edit
 - src/physics/math.rs
