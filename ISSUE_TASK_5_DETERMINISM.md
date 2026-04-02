@@ -1,13 +1,13 @@
 ---
 name: Cross-Platform Determinism Setup
-about: Implement deterministic execution across architectures.
+about: Implement strict floating-point math control and deterministic solver execution across multiple architectures using libm.
 title: 'Cross-Platform Determinism Setup'
 labels: 'determinism, ci'
 assignees: ''
 ---
 
 ## Description
-Implement strict floating-point math control and deterministic solver execution across multiple architectures.
+Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm`.
 
 ## Acceptance Criteria
 - Simulation yields identical results across different CPU architectures.
@@ -15,12 +15,11 @@ Implement strict floating-point math control and deterministic solver execution 
 - Fallback mechanisms for non-deterministic math functions are implemented.
 
 ## Assigned Agency Role
-**Systems Engineer** needs to resolve/issue/test this feature.
+Task 5 Cross-Platform Determinism needs to be resolved/issued/tested by the Systems Engineer.
 
 ## Files to Create/Edit
 - src/physics/math.rs
 - src/physics/constants.rs
-- Tests related to cross-platform execution.
 
 ## Reference
-Tier 2 Projects - Cross-Platform Determinism
+Cross-Platform Determinism from `ISSUE_STATE_OF_THE_ART.md`

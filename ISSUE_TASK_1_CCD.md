@@ -15,7 +15,7 @@ Implement Continuous Collision Detection to prevent "tunneling" at high velociti
 - Performance impact remains within acceptable bounds for high-speed simulations.
 
 ## Assigned Agency Role
-**Physics Engineer** needs to resolve/issue/test this feature.
+Task 1 Continuous Collision Detection needs to be resolved/issued/tested by the Physics Engineer.
 
 ## Files to Create/Edit
 - src/physics/ccd.rs
@@ -23,4 +23,4 @@ Implement Continuous Collision Detection to prevent "tunneling" at high velociti
 - src/physics/world.rs
 
 ## Reference
-Tier 1 Projects - Continuous Collision Detection (CCD)
+Continuous Collision Detection (CCD) from `ISSUE_STATE_OF_THE_ART.md`

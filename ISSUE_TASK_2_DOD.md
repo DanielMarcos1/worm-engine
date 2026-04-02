@@ -15,7 +15,7 @@ Refactor core engine structures to support Data-Oriented Design, making it compa
 - Core systems (e.g., rigid body updates) operate on flat arrays or similar DOD structures.
 
 ## Assigned Agency Role
-**Architecture Lead** needs to resolve/issue/test this feature.
+Task 2 Data-Oriented Design needs to be resolved/issued/tested by the Architecture Lead.
 
 ## Files to Create/Edit
 - src/physics/rigid_body.rs
@@ -23,4 +23,4 @@ Refactor core engine structures to support Data-Oriented Design, making it compa
 - src/physics/components.rs
 
 ## Reference
-Tier 1 Projects - Data-Oriented Design (DOD) & ECS Compatibility
+Data-Oriented Design (DOD) & ECS Compatibility from `ISSUE_STATE_OF_THE_ART.md`

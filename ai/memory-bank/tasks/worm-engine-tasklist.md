@@ -1,9 +1,9 @@
 # Worm Engine Development Tasks
 
 ## Specification Summary
-**Original Requirements**: "Evolve the Worm Engine from a functional 3D physics engine into a state-of-the-art, high-performance solution capable of capturing top-tier market share in the simulation and gaming sectors."
+**Original Requirements**: "Evolve the Worm Engine from a functional 3D physics engine into a state-of-the-art (SOTA), high-performance solution capable of capturing top-tier market share in the simulation and gaming sectors."
 **Technical Stack**: Rust, rayon, wide, libm, wgpu (~v0.19), WGSL
-**Target Timeline**: Integrated into v0.4.0 (CCD), v0.6.0 (DOD, SIMD), v0.7.0/v1.0.0 (Determinism), and v0.8.0/v1.0.0 (GPU) while maintaining 95% on-time delivery benchmark for the current roadmap milestones.
+**Target Timeline**: v0.4.0 (CCD), v0.6.0 (DOD & Multithreading/SIMD), v0.7.0/v1.0.0 (Determinism), v1.0.0 (GPU Acceleration)
 
 ## Development Tasks
 
@@ -19,10 +19,10 @@
 - src/physics/mod.rs
 - src/physics/world.rs
 
-**Reference**: Issue Task 1 CCD
-**Assignment**: Physics Engineer needs to resolve/issue/test this feature.
+**Reference**: Continuous Collision Detection (CCD) from `ISSUE_STATE_OF_THE_ART.md`
+**Assignment**: Task 1 Continuous Collision Detection needs to be resolved/issued/tested by the Physics Engineer
 
-### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
+### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring
 **Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
 **Acceptance Criteria**:
 - Memory layout is optimized for cache coherency.
@@ -34,27 +34,27 @@
 - src/physics/world.rs
 - src/physics/components.rs
 
-**Reference**: Issue Task 2 DOD
-**Assignment**: Architecture Lead needs to resolve/issue/test this feature.
+**Reference**: Data-Oriented Design (DOD) & ECS Compatibility from `ISSUE_STATE_OF_THE_ART.md`
+**Assignment**: Task 2 Data-Oriented Design needs to be resolved/issued/tested by the Architecture Lead
 
-### [ ] Task 3: Multithreading Implementation
-**Description**: Integrate `rayon` for task-based parallelism. Refactor parallel iteration over large mutable SoA arrays in `World::step` to chain `.par_iter_mut().zip(...)` instead of passing tuples.
+### [ ] Task 3: Multithreading via rayon
+**Description**: Integrate `rayon` for task-based parallelism to scale linearly up to 16 threads.
 **Acceptance Criteria**:
 - Engine scales linearly up to 16 threads on supported hardware.
 - Thread synchronization does not introduce unresolvable latency.
-- SIMD vectorization utilizes a Structure of Arrays (SoA) approach rather than AoS on individual math primitives.
+- Iterating over multiple mutable SoA arrays in `rayon` chains `.par_iter_mut().zip(...)` or `.par_chunks_mut(4).zip(...)` instead of passing a tuple.
 
 **Files to Create/Edit**:
 - Cargo.toml
 - src/physics/world.rs
 
-**Reference**: Issue Task 3 SIMD (Part 1 - Rayon)
-**Assignment**: Systems Engineer needs to resolve/issue/test this feature.
+**Reference**: Multithreading and SIMD Vectorization from `ISSUE_STATE_OF_THE_ART.md`
+**Assignment**: Task 3 Multithreading needs to be resolved/issued/tested by the Systems Engineer
 
-### [ ] Task 4: SIMD Vectorization Implementation
-**Description**: Integrate `wide` for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`.
+### [ ] Task 4: SIMD Vectorization via wide
+**Description**: Integrate the `wide` crate for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`.
 **Acceptance Criteria**:
-- Core math operations (vector additions, dot products, cross products) utilize SIMD instructions.
+- Core math operations (vector additions, dot products, cross products) utilize SIMD instructions via the `wide` crate.
 - SIMD implementation leverages SoA approach exclusively without overhead on individual primitives.
 
 **Files to Create/Edit**:
@@ -62,8 +62,8 @@
 - src/geometry/vector.rs
 - src/physics/world.rs
 
-**Reference**: Issue Task 3 SIMD (Part 2 - SIMD)
-**Assignment**: Systems Engineer needs to resolve/issue/test this feature.
+**Reference**: Multithreading and SIMD Vectorization from `ISSUE_STATE_OF_THE_ART.md`
+**Assignment**: Task 4 SIMD Vectorization needs to be resolved/issued/tested by the Systems Engineer
 
 ### [ ] Task 5: Cross-Platform Determinism Setup
 **Description**: Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm`.
@@ -76,8 +76,8 @@
 - src/physics/math.rs
 - src/physics/constants.rs
 
-**Reference**: Issue Task 4 Determinism
-**Assignment**: Systems Engineer needs to resolve/issue/test this feature.
+**Reference**: Cross-Platform Determinism from `ISSUE_STATE_OF_THE_ART.md`
+**Assignment**: Task 5 Cross-Platform Determinism needs to be resolved/issued/tested by the Systems Engineer
 
 ### [ ] Task 6: GPU Acceleration (Compute Shaders) Integration
 **Description**: Integrate `wgpu` (~v0.19) for GPU-accelerated compute shaders targeting massive scale simulations. `Vector3d` sent via `bytemuck` must use `#[repr(C)]` with `Pod` and `Zeroable` derives. In WGSL, use a flat `array<f32>` (indexing by 3) instead of `array<vec3<f32>>`.
@@ -91,17 +91,17 @@
 - src/physics/gpu.rs
 - shaders/compute.wgsl
 
-**Reference**: Issue Task 5 GPU
-**Assignment**: Graphics Engineer needs to resolve/issue/test this feature.
+**Reference**: GPU Acceleration (Compute Shaders) from `ISSUE_STATE_OF_THE_ART.md`
+**Assignment**: Task 6 GPU Acceleration needs to be resolved/issued/tested by the Graphics Engineer
 
 ## Quality Requirements
 - [ ] Must pass `cargo check` cleanly
 - [ ] Must pass `cargo test` suite
 - [ ] No background processes in any commands - NEVER append `&`
-- [ ] Iterating multiple mutable SoA arrays in `rayon` must chain `.par_iter_mut().zip(...)`
-- [ ] WGSL shaders must avoid 16-byte alignment crashes by using flat `array<f32>` and Rust structs must use `#[repr(C)]`, `Pod`, and `Zeroable`.
+- [ ] SIMD uses `wide` exclusively, no `std::simd`
+- [ ] Multithreading uses `rayon` with proper iteration techniques
 
 ## Technical Notes
 **Development Stack**: Rust, rayon, wide, libm, wgpu (~v0.19), WGSL
-**Special Instructions**: Ensure DOD refactoring is complete before implementing SIMD vectorization to allow SoA optimization. Risk of scope creep with GPU/CCD features; modularize as optional add-ons to not block v1.0.0.
-**Timeline Expectations**: Milestones to be met for 0.4.0, 0.6.0, 0.7.0, and 0.8.0 as per strategic portfolio plan. Target 30-60 minutes maximum per actionable development task.
+**Special Instructions**: Ensure DOD refactoring is complete before implementing SIMD vectorization to allow SoA optimization.
+**Timeline Expectations**: Front-loading investment in architectural refactoring (ECS compatibility) to minimize technical debt. SOTA features modularized as optional add-ons rather than hard blockers for 1.0.0 core functionality.
