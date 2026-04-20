@@ -15,7 +15,7 @@ Integrate `rayon` for task-based parallelism and `std::simd` for vectorizing mat
 - Thread synchronization does not introduce unresolvable latency.
 
 ## Assigned Agency Role
-**Systems Engineer** needs to resolve/issue/test this feature.
+Multithreading and SIMD Vectorization needs to be resolved/issued/tested by the Systems Engineer.
 
 ## Files to Create/Edit
 - Cargo.toml
