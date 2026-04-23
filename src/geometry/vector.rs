@@ -23,36 +23,20 @@ impl Vector3d {
         }
     }
 
-    // Internal helper to get SIMD representation (padding with 0.0)
-    #[inline(always)]
-    fn to_simd(&self) -> f32x4 {
-        f32x4::new([self.x, self.y, self.z, 0.0])
-    }
 
-    // Internal helper to create Vector3d from SIMD
-    #[inline(always)]
-    fn from_simd(simd: f32x4) -> Self {
-        let arr = simd.to_array();
-        Self {
-            x: arr[0],
-            y: arr[1],
-            z: arr[2],
-        }
-    }
 
     // A vector of 3d must have basic arithmetic calculations to represent it's location on the environment
     pub fn add(&self, other: &Vector3d) -> Vector3d {
-        Self::from_simd(self.to_simd() + other.to_simd())
+        Vector3d::new(self.x + other.x, self.y + other.y, self.z + other.z)
     }
 
     pub fn subtract(&self, other: &Vector3d) -> Vector3d {
-        Self::from_simd(self.to_simd() - other.to_simd())
+        Vector3d::new(self.x - other.x, self.y - other.y, self.z - other.z)
     }
 
     // Scalar multiplication has the purpose to control vector speed without changing its direction
     pub fn scale(&self, scalar: f32) -> Vector3d {
-        let scalar_simd = f32x4::splat(scalar);
-        Self::from_simd(self.to_simd() * scalar_simd)
+        Vector3d::new(self.x * scalar, self.y * scalar, self.z * scalar)
     }
 
     // This represents the length or size of the vector
@@ -72,9 +56,7 @@ impl Vector3d {
 
     // Look at where the vector is pointing at and it's relative direction compared to other vectors
     pub fn dot(&self, other: &Vector3d) -> f32 {
-        let mul = self.to_simd() * other.to_simd();
-        let arr = mul.to_array();
-        arr[0] + arr[1] + arr[2]
+        self.x * other.x + self.y * other.y + self.z * other.z
     }
 
     // This can be used to calculate many things like perpendicular directions,

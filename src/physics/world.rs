@@ -4,6 +4,14 @@ use wide::f32x4;
 use crate::geometry::vector::Vector3d;
 use crate::physics::ccd::calculate_toi_sphere_sphere;
 
+
+pub type Position = crate::geometry::vector::Vector3d;
+pub type Velocity = crate::geometry::vector::Vector3d;
+pub type Acceleration = crate::geometry::vector::Vector3d;
+pub type Force = crate::geometry::vector::Vector3d;
+pub type Mass = f32;
+pub type Shape = crate::geometry::polygon::Polygon;
+
 pub struct World {
     pub bodies: RigidBodyComponents,
     pub time_step: f32,
