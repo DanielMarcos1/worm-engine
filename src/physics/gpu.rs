@@ -118,12 +118,14 @@ impl GpuContext {
         );
 
         // Submit the commands to the queue
-        let submission_index = self.queue.submit(Some(encoder.finish()));
+        let _submission_index = self.queue.submit(Some(encoder.finish()));
 
         // Map the staging buffer so we can read it on CPU
         let buffer_slice = staging_buffer.slice(..);
         let (sender, receiver) = futures_channel::oneshot::channel();
-        buffer_slice.map_async(wgpu::MapMode::Read, move |v| sender.send(v).unwrap());
+        buffer_slice.map_async(wgpu::MapMode::Read, move |v| {
+            let _ = sender.send(v);
+        });
 
         // Wait for mapping to finish
         self.device.poll(wgpu::PollType::Wait {
