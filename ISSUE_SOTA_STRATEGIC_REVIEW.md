@@ -21,7 +21,7 @@
 ## 📈 Strategic Priorities Next Period
 **Investment Focus**: Front-loading investment in architectural refactoring (DOD/ECS compatibility) to minimize technical debt.
 **Market Opportunities**: Capturing the modern Rust game engine ecosystem (Bevy, Flecs) via seamless ECS integration.
-**Capability Building**: Upskilling the engineering team in advanced DOD patterns, deterministic mathematics, and SIMD Vectorization using `rayon` and `std::simd` with linear scaling up to 16 threads.
+**Capability Building**: Upskilling the engineering team in advanced DOD patterns, deterministic mathematics, and SIMD Vectorization using `rayon` and `wide` with linear scaling up to 16 threads.
 **Partnership Development**: Establishing strategic alliances with leading Rust game engine maintainers for early integration testing and vendor relationships.
 
 ---

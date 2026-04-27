@@ -21,7 +21,7 @@ While our current 1.0.0 roadmap (Rigid/Soft bodies, Collisions, Integrators) lay
   - *Expected ROI*: 40% increase in integration adoption by modern game studios.
 
 - **Multithreading and SIMD Vectorization**:
-  - *Strategic Impact*: Maximizes CPU utilization. Leveraging Rust's `rayon` and `std::simd` will provide the hyper-performance required to compete with industry giants (Havok, Jolt).
+  - *Strategic Impact*: Maximizes CPU utilization. Leveraging Rust's `rayon` and `wide` will provide the hyper-performance required to compete with industry giants (Havok, Jolt).
   - *Resource Allocation & Metrics*: R&D innovation pipeline budget; success measured by linear scaling up to 16 threads.
 
 ### Tier 2 Projects (Growth Initiatives):
