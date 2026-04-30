@@ -127,7 +127,7 @@ impl GpuContext {
 
         // Wait for mapping to finish
         self.device.poll(wgpu::PollType::Wait {
-            submission_index: None,
+            submission_index: Some(submission_index.clone()),
             timeout: Some(Duration::from_secs(5)),
         }).unwrap();
 
