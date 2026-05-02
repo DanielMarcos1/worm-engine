@@ -1,12 +1,18 @@
-use crate::geometry::{vector::Vector3d, polygon::Polygon};
+use crate::geometry::polygon::Polygon;
 
 #[derive(Debug, Default)]
 pub struct RigidBodyComponents {
     pub shapes: Vec<Polygon>,
     pub masses: Vec<f32>,
-    pub velocities: Vec<Vector3d>,
-    pub accelerations: Vec<Vector3d>,
-    pub forces: Vec<Vector3d>,
+    pub velocities_x: Vec<f32>,
+    pub velocities_y: Vec<f32>,
+    pub velocities_z: Vec<f32>,
+    pub accelerations_x: Vec<f32>,
+    pub accelerations_y: Vec<f32>,
+    pub accelerations_z: Vec<f32>,
+    pub forces_x: Vec<f32>,
+    pub forces_y: Vec<f32>,
+    pub forces_z: Vec<f32>,
 }
 
 impl RigidBodyComponents {
@@ -18,9 +24,15 @@ impl RigidBodyComponents {
         assert!(mass > 0.0, "Mass must be greater than zero");
         self.shapes.push(shape);
         self.masses.push(mass);
-        self.velocities.push(Vector3d::zero());
-        self.accelerations.push(Vector3d::zero());
-        self.forces.push(Vector3d::zero());
+        self.velocities_x.push(0.0);
+        self.velocities_y.push(0.0);
+        self.velocities_z.push(0.0);
+        self.accelerations_x.push(0.0);
+        self.accelerations_y.push(0.0);
+        self.accelerations_z.push(0.0);
+        self.forces_x.push(0.0);
+        self.forces_y.push(0.0);
+        self.forces_z.push(0.0);
     }
 
     pub fn len(&self) -> usize {
