@@ -22,7 +22,7 @@
 **Reference**: Issue Task 1 CCD
 **Assignment**: Physics Engineer needs to resolve/issue/test this feature.
 
-### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
+### [x] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
 **Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
 **Acceptance Criteria**:
 - Memory layout is optimized for cache coherency.
@@ -37,7 +37,7 @@
 **Reference**: Issue Task 2 DOD
 **Assignment**: Architecture Lead needs to resolve/issue/test this feature.
 
-### [ ] Task 3: Multithreading Implementation
+### [x] Task 3: Multithreading Implementation
 **Description**: Integrate `rayon` for task-based parallelism. Refactor parallel iteration over large mutable SoA arrays in `World::step` to chain `.par_iter_mut().zip(...)` instead of passing tuples.
 **Acceptance Criteria**:
 - Engine scales linearly up to 16 threads on supported hardware.
@@ -51,7 +51,7 @@
 **Reference**: Issue Task 3 SIMD (Part 1 - Rayon)
 **Assignment**: Systems Engineer needs to resolve/issue/test this feature.
 
-### [ ] Task 4: SIMD Vectorization Implementation
+### [x] Task 4: SIMD Vectorization Implementation
 **Description**: Integrate `wide` for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`.
 **Acceptance Criteria**:
 - Core math operations (vector additions, dot products, cross products) utilize SIMD instructions.
@@ -95,11 +95,11 @@
 **Assignment**: Graphics Engineer needs to resolve/issue/test this feature.
 
 ## Quality Requirements
-- [ ] Must pass `cargo check` cleanly
-- [ ] Must pass `cargo test` suite
-- [ ] No background processes in any commands - NEVER append `&`
-- [ ] Iterating multiple mutable SoA arrays in `rayon` must chain `.par_iter_mut().zip(...)`
-- [ ] WGSL shaders must avoid 16-byte alignment crashes by using flat `array<f32>` and Rust structs must use `#[repr(C)]`, `Pod`, and `Zeroable`.
+- [x] Must pass `cargo check` cleanly
+- [x] Must pass `cargo test` suite
+- [x] No background processes in any commands - NEVER append `&``
+- [x] Iterating multiple mutable SoA arrays in `rayon` must chain `.par_iter_mut().zip(...)`
+- [x] WGSL shaders must avoid 16-byte alignment crashes by using flat `array<f32>` and Rust structs must use `#[repr(C)]`, `Pod`, and `Zeroable`.
 
 ## Technical Notes
 **Development Stack**: Rust, rayon, wide, libm, wgpu (~v0.19), WGSL
