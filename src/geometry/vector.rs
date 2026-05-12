@@ -1,3 +1,4 @@
+use wide::f32x4;
 use bytemuck::{Pod, Zeroable};
 use crate::physics::math::DeterministicMath;
 
