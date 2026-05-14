@@ -2,7 +2,7 @@
 
 ## 🎯 Executive Summary
 **Strategic Objectives**: Evolve the Worm Engine from a functional 3D physics engine into a state-of-the-art, high-performance solution capable of capturing top-tier market share in the simulation and gaming sectors.
-**Portfolio Value**: Projected 35% ROI through competitive licensing and integration capabilities, ensuring we maintain our 95% on-time delivery benchmark for the 1.0.0 roadmap.
+**Portfolio Value**: Projected 25%+ ROI through competitive licensing and integration capabilities, ensuring we maintain our 95% on-time delivery benchmark for the 1.0.0 roadmap.
 **Market Opportunity**: The current physics engine landscape demands hyper-performance, memory efficiency, and deterministic simulation. By adding critical missing architectural features, we position Worm Engine perfectly for the anticipated market shift toward highly scalable, data-oriented multiplayer experiences.
 **Resource Strategy**: Mobilize senior systems programming talent and optimize R&D budget for advanced physics algorithms and Rust-native optimizations.
 
@@ -21,7 +21,7 @@ While our current 1.0.0 roadmap (Rigid/Soft bodies, Collisions, Integrators) lay
   - *Expected ROI*: 40% increase in integration adoption by modern game studios.
 
 - **Multithreading and SIMD Vectorization**:
-  - *Strategic Impact*: Maximizes CPU utilization. Leveraging Rust's `rayon` and `std::simd` will provide the hyper-performance required to compete with industry giants (Havok, Jolt).
+  - *Strategic Impact*: Maximizes CPU utilization. Leveraging Rust's `rayon` and `wide crate` will provide the hyper-performance required to compete with industry giants (Havok, Jolt).
   - *Resource Allocation & Metrics*: R&D innovation pipeline budget; success measured by linear scaling up to 16 threads.
 
 ### Tier 2 Projects (Growth Initiatives):
