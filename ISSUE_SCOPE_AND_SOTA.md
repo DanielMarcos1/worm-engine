@@ -20,13 +20,21 @@
 
 ## 📈 Strategic Priorities Next Period
 **Investment Focus**:
-1. **DOD & ECS Refactoring**: Front-load investment in architectural refactoring to convert core structures (e.g., rigid body updates) to flat arrays/SOA. *[Architecture Lead]*
-2. **Continuous Collision Detection (CCD)**: Develop a modular TOI calculation pipeline to eliminate tunneling at 1000m/s. *[Physics Engineer]*
-3. **Multithreading & SIMD**: Integrate `rayon` and `std::simd` to scale linearly up to 16 threads. *[Systems Engineer]*
+1. **DOD & ECS Refactoring**: Front-load investment in architectural refactoring to convert core structures (e.g., rigid body updates) to flat arrays/SOA. *Architecture Lead*
+2. **Continuous Collision Detection (CCD)**: Develop a modular TOI calculation pipeline to eliminate tunneling at 1000m/s. *Physics Engineer*
+3. **Multithreading & SIMD**: Integrate `rayon` and `std::simd` to scale linearly up to 16 threads. *Systems Engineer*
 
 **Market Opportunities**: Achieving these Tier 1 priorities will establish the Worm Engine as a top 3 benchmark performer among open-source Rust physics engines, capturing the high-speed and ECS-native game development sectors.
 **Capability Building**: Focus on robust CI testing for cross-platform determinism and fallback mechanisms for non-deterministic math.
 **Partnership Development**: Engage with leading Rust game engine maintainers (e.g., Bevy community) for early integration testing of our DOD API.
+
+
+## Project Issues
+- Continuous Collision Detection (CCD) needs to be resolved/issued/tested by the Physics Engineer
+- Data-Oriented Design (DOD) & ECS Refactoring needs to be resolved/issued/tested by the Architecture Lead
+- Multithreading and SIMD Vectorization needs to be resolved/issued/tested by the Systems Engineer
+- Cross-Platform Determinism Setup needs to be resolved/issued/tested by the Systems Engineer
+- GPU Acceleration (Compute Shaders) Integration needs to be resolved/issued/tested by the Graphics Engineer
 
 ---
 **Studio Producer**: Executive Creative Strategist
