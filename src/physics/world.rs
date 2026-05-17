@@ -1,4 +1,4 @@
-use crate::{geometry::polygon::Polygon, physics::components::RigidBodyComponents, physics::rigid_body};
+use crate::{geometry::polygon::Polygon, physics::components::RigidBodyComponents};
 use rayon::prelude::*;
 use wide::f32x4;
 use crate::geometry::vector::Vector3d;
@@ -10,12 +10,12 @@ pub struct World {
     pub next_entity: usize,
 
     // SoA (Struct of Arrays) layout for DOD
-    pub positions: Vec<Position>,
-    pub velocities: Vec<Velocity>,
-    pub accelerations: Vec<Acceleration>,
-    pub forces: Vec<Force>,
-    pub masses: Vec<Mass>,
-    pub shapes: Vec<Shape>,
+    pub positions: Vec<Vector3d>,
+    pub velocities: Vec<Vector3d>,
+    pub accelerations: Vec<Vector3d>,
+    pub forces: Vec<Vector3d>,
+    pub masses: Vec<f32>,
+    pub shapes: Vec<Polygon>,
     pub active_entities: Vec<bool>, // true if entity is active
 }
 
@@ -88,13 +88,13 @@ impl World {
                 v_z = v_z + (a_z * dt_simd);
 
                 // Store back
-                let a_x_arr: [f32; 4] = a_x.into();
-                let a_y_arr: [f32; 4] = a_y.into();
-                let a_z_arr: [f32; 4] = a_z.into();
+                let a_x_arr: [f32; 4] = a_x.to_array();
+                let a_y_arr: [f32; 4] = a_y.to_array();
+                let a_z_arr: [f32; 4] = a_z.to_array();
 
-                let v_x_arr: [f32; 4] = v_x.into();
-                let v_y_arr: [f32; 4] = v_y.into();
-                let v_z_arr: [f32; 4] = v_z.into();
+                let v_x_arr: [f32; 4] = v_x.to_array();
+                let v_y_arr: [f32; 4] = v_y.to_array();
+                let v_z_arr: [f32; 4] = v_z.to_array();
 
                 for i in 0..4 {
                     accelerations[i] = Vector3d::new(a_x_arr[i], a_y_arr[i], a_z_arr[i]);
@@ -116,7 +116,7 @@ impl World {
             for i in start..end {
                 let mass = self.bodies.masses[i];
                 let gravity_force = crate::physics::constants::GRAVITY.scale(mass);
-                let mut force = self.bodies.forces[i].add(&gravity_force);
+                let force = self.bodies.forces[i].add(&gravity_force);
 
                 let accel = force.scale(1.0 / mass);
                 self.bodies.accelerations[i] = accel;
