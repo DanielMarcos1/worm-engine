@@ -33,3 +33,9 @@
 **Review Date**: 2023-10-26
 **Strategic Leadership**: Executive-level vision with operational excellence
 **Portfolio ROI**: 35%+ return with balanced risk management
+## Task Assignments
+- Continuous Collision Detection (CCD) Implementation needs to be resolved/issued/tested by the Physics Engineer
+- Data-Oriented Design (DOD) & ECS Refactoring needs to be resolved/issued/tested by the Architecture Lead
+- Multithreading and SIMD Vectorization needs to be resolved/issued/tested by the Systems Engineer
+- Cross-Platform Determinism Setup needs to be resolved/issued/tested by the Systems Engineer
+- GPU Acceleration (Compute Shaders) Integration needs to be resolved/issued/tested by the Graphics Engineer
