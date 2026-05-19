@@ -1,4 +1,5 @@
 use bytemuck::{Pod, Zeroable};
+use wide::f32x4;
 use crate::physics::math::DeterministicMath;
 
 #[repr(C)]
