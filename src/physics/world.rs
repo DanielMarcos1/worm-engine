@@ -10,12 +10,12 @@ pub struct World {
     pub next_entity: usize,
 
     // SoA (Struct of Arrays) layout for DOD
-    pub positions: Vec<Position>,
-    pub velocities: Vec<Velocity>,
-    pub accelerations: Vec<Acceleration>,
-    pub forces: Vec<Force>,
-    pub masses: Vec<Mass>,
-    pub shapes: Vec<Shape>,
+    pub positions: Vec<Vector3d>,
+    pub velocities: Vec<Vector3d>,
+    pub accelerations: Vec<Vector3d>,
+    pub forces: Vec<Vector3d>,
+    pub masses: Vec<f32>,
+    pub shapes: Vec<Polygon>,
     pub active_entities: Vec<bool>, // true if entity is active
 }
 
