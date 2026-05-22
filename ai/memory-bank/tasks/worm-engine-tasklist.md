@@ -1,14 +1,19 @@
-# Worm Engine Development Tasks
+# Worm Engine SOTA Integration Development Tasks
 
 ## Specification Summary
-**Original Requirements**: "Evolve the Worm Engine from a functional 3D physics engine into a state-of-the-art, high-performance solution capable of capturing top-tier market share in the simulation and gaming sectors."
-**Technical Stack**: Rust, rayon, wide, libm, wgpu (~v0.19), WGSL
-**Target Timeline**: Integrated into v0.4.0 (CCD), v0.6.0 (DOD, SIMD), v0.7.0/v1.0.0 (Determinism), and v0.8.0/v1.0.0 (GPU) while maintaining 95% on-time delivery benchmark for the current roadmap milestones.
+**Original Requirements**:
+- Implement Continuous Collision Detection (CCD) to prevent tunneling at high velocities (0% tunneling at 1000m/s).
+- Refactor core engine structures to support Data-Oriented Design (DOD) & ECS Compatibility (API integration under 2 hours).
+- Integrate multithreading and SIMD Vectorization (`rayon`, `wide`) for performance scaling (linear scaling up to 16 threads).
+- Establish cross-platform determinism setup.
+- Integrate GPU acceleration (Compute Shaders) with WGPU.
+**Technical Stack**: Rust, `rayon`, `wide`, `libm`, `wgpu` (~v0.19), WGSL.
+**Target Timeline**: v0.4.0 for CCD, v0.6.0 for DOD and SIMD, v0.7.0/v1.0.0 for Determinism, post-v0.6.0 for GPU Acceleration.
 
 ## Development Tasks
 
-### [ ] Task 1: Continuous Collision Detection (CCD)
-**Description**: Implement Continuous Collision Detection to prevent "tunneling" at high velocities. This involves calculating time of impact (TOI) between moving bodies.
+### [ ] Task 1: Continuous Collision Detection (CCD) Implementation
+**Description**: Implement CCD to prevent "tunneling" at high velocities. This involves calculating time of impact (TOI) between moving bodies. Modularize as an optional add-on.
 **Acceptance Criteria**:
 - 0% tunneling observed at velocities up to 1000m/s.
 - CCD pipeline integrates with the existing collision detection system.
@@ -19,11 +24,10 @@
 - src/physics/mod.rs
 - src/physics/world.rs
 
-**Reference**: Issue Task 1 CCD
-**Assignment**: Physics Engineer needs to resolve/issue/test this feature.
+**Reference**: Continuous Collision Detection (CCD) Implementation needs to be resolved/issued/tested by the Physics Engineer.
 
-### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
-**Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
+### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring
+**Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs. Use explicit type allocations in flat arrays.
 **Acceptance Criteria**:
 - Memory layout is optimized for cache coherency.
 - API allows integration with a standard ECS in under 2 hours.
@@ -34,38 +38,23 @@
 - src/physics/world.rs
 - src/physics/components.rs
 
-**Reference**: Issue Task 2 DOD
-**Assignment**: Architecture Lead needs to resolve/issue/test this feature.
+**Reference**: Data-Oriented Design (DOD) & ECS Refactoring needs to be resolved/issued/tested by the Architecture Lead.
 
-### [ ] Task 3: Multithreading Implementation
-**Description**: Integrate `rayon` for task-based parallelism. Refactor parallel iteration over large mutable SoA arrays in `World::step` to chain `.par_iter_mut().zip(...)` instead of passing tuples.
+### [ ] Task 3: Multithreading and SIMD Vectorization
+**Description**: Integrate `rayon` for task-based parallelism and the `wide` crate for vectorizing math operations in the physics pipeline (avoiding `std::simd`). Use SoA layout.
 **Acceptance Criteria**:
 - Engine scales linearly up to 16 threads on supported hardware.
+- Core math operations (vector additions, dot products, cross products) utilize SIMD instructions via the `wide` crate.
 - Thread synchronization does not introduce unresolvable latency.
-- SIMD vectorization utilizes a Structure of Arrays (SoA) approach rather than AoS on individual math primitives.
-
-**Files to Create/Edit**:
-- Cargo.toml
-- src/physics/world.rs
-
-**Reference**: Issue Task 3 SIMD (Part 1 - Rayon)
-**Assignment**: Systems Engineer needs to resolve/issue/test this feature.
-
-### [ ] Task 4: SIMD Vectorization Implementation
-**Description**: Integrate `wide` for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`.
-**Acceptance Criteria**:
-- Core math operations (vector additions, dot products, cross products) utilize SIMD instructions.
-- SIMD implementation leverages SoA approach exclusively without overhead on individual primitives.
 
 **Files to Create/Edit**:
 - Cargo.toml
 - src/geometry/vector.rs
 - src/physics/world.rs
 
-**Reference**: Issue Task 3 SIMD (Part 2 - SIMD)
-**Assignment**: Systems Engineer needs to resolve/issue/test this feature.
+**Reference**: Multithreading and SIMD Vectorization needs to be resolved/issued/tested by the Systems Engineer.
 
-### [ ] Task 5: Cross-Platform Determinism Setup
+### [ ] Task 4: Cross-Platform Determinism Setup
 **Description**: Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm`.
 **Acceptance Criteria**:
 - Simulation yields identical results across different CPU architectures.
@@ -75,33 +64,33 @@
 **Files to Create/Edit**:
 - src/physics/math.rs
 - src/physics/constants.rs
+- Tests related to cross-platform execution.
 
-**Reference**: Issue Task 4 Determinism
-**Assignment**: Systems Engineer needs to resolve/issue/test this feature.
+**Reference**: Cross-Platform Determinism Setup needs to be resolved/issued/tested by the Systems Engineer.
 
-### [ ] Task 6: GPU Acceleration (Compute Shaders) Integration
-**Description**: Integrate `wgpu` (~v0.19) for GPU-accelerated compute shaders targeting massive scale simulations. `Vector3d` sent via `bytemuck` must use `#[repr(C)]` with `Pod` and `Zeroable` derives. In WGSL, use a flat `array<f32>` (indexing by 3) instead of `array<vec3<f32>>`.
+### [ ] Task 5: GPU Acceleration (Compute Shaders) Integration
+**Description**: Future-proof the engine by integrating WGPU for GPU-accelerated compute shaders, initially targeting massive scale simulations like soft-bodies or fluids. Keep modular as an optional add-on.
 **Acceptance Criteria**:
 - Basic WGPU context is established and integrated into the build.
 - A prototype compute shader runs and passes data back to the CPU physics pipeline.
-- CPU pipeline remains stable during GPU execution with no 16-byte memory alignment crashes.
+- CPU pipeline remains stable during GPU execution.
 
 **Files to Create/Edit**:
 - Cargo.toml
 - src/physics/gpu.rs
 - shaders/compute.wgsl
 
-**Reference**: Issue Task 5 GPU
-**Assignment**: Graphics Engineer needs to resolve/issue/test this feature.
+**Reference**: GPU Acceleration (Compute Shaders) Integration needs to be resolved/issued/tested by the Graphics Engineer.
 
 ## Quality Requirements
 - [ ] Must pass `cargo check` cleanly
 - [ ] Must pass `cargo test` suite
-- [ ] No background processes in any commands - NEVER append `&`
+- [ ] No background processes in any commands - NEVER append `&`.
 - [ ] Iterating multiple mutable SoA arrays in `rayon` must chain `.par_iter_mut().zip(...)`
 - [ ] WGSL shaders must avoid 16-byte alignment crashes by using flat `array<f32>` and Rust structs must use `#[repr(C)]`, `Pod`, and `Zeroable`.
+- [ ] All components must use supported dependencies (`wide`, `rayon`, `libm`, `wgpu`). Strict avoidance of unstable Rust features like `std::simd`.
 
 ## Technical Notes
-**Development Stack**: Rust, rayon, wide, libm, wgpu (~v0.19), WGSL
-**Special Instructions**: Ensure DOD refactoring is complete before implementing SIMD vectorization to allow SoA optimization. Risk of scope creep with GPU/CCD features; modularize as optional add-ons to not block v1.0.0.
-**Timeline Expectations**: Milestones to be met for 0.4.0, 0.6.0, 0.7.0, and 0.8.0 as per strategic portfolio plan. Target 30-60 minutes maximum per actionable development task.
+**Development Stack**: Rust, rayon, wide, libm, wgpu, WGSL.
+**Special Instructions**: Ensure all SIMD operations use the `wide` crate with `.to_array()` for explicit conversion to avoid inference compilation errors. GPU and CCD features should be modularized as optional add-ons to mitigate risk of scope creep.
+**Timeline Expectations**: Core 1.0.0 milestones must be maintained with 95% on-time delivery; SOTA features layered efficiently or scheduled for post-1.0.0 where risky.
