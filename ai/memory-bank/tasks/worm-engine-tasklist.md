@@ -8,7 +8,7 @@
 ## Development Tasks
 
 ### [ ] Task 1: Continuous Collision Detection (CCD)
-**Description**: Implement Continuous Collision Detection to prevent "tunneling" at high velocities. This involves calculating time of impact (TOI) between moving bodies.
+**Description**: Implement Continuous Collision Detection to prevent "tunneling" at high velocities. This involves calculating time of impact (TOI) between moving bodies. [Continuous Collision Detection (CCD) Implementation] needs to be resolved/issued/tested by the [Physics Engineer].
 **Acceptance Criteria**:
 - 0% tunneling observed at velocities up to 1000m/s.
 - CCD pipeline integrates with the existing collision detection system.
@@ -23,7 +23,7 @@
 **Assignment**: Physics Engineer needs to resolve/issue/test this feature.
 
 ### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
-**Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
+**Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs. [Data-Oriented Design (DOD) & ECS Refactoring] needs to be resolved/issued/tested by the [Architecture Lead].
 **Acceptance Criteria**:
 - Memory layout is optimized for cache coherency.
 - API allows integration with a standard ECS in under 2 hours.
@@ -38,7 +38,7 @@
 **Assignment**: Architecture Lead needs to resolve/issue/test this feature.
 
 ### [ ] Task 3: Multithreading Implementation
-**Description**: Integrate `rayon` for task-based parallelism. Refactor parallel iteration over large mutable SoA arrays in `World::step` to chain `.par_iter_mut().zip(...)` instead of passing tuples.
+**Description**: Integrate `rayon` for task-based parallelism. Refactor parallel iteration over large mutable SoA arrays in `World::step` to chain `.par_iter_mut().zip(...)` instead of passing tuples. [Multithreading Implementation] needs to be resolved/issued/tested by the [Systems Engineer].
 **Acceptance Criteria**:
 - Engine scales linearly up to 16 threads on supported hardware.
 - Thread synchronization does not introduce unresolvable latency.
@@ -52,7 +52,7 @@
 **Assignment**: Systems Engineer needs to resolve/issue/test this feature.
 
 ### [ ] Task 4: SIMD Vectorization Implementation
-**Description**: Integrate `wide` for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`.
+**Description**: Integrate `wide` for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`. [SIMD Vectorization Implementation] needs to be resolved/issued/tested by the [Systems Engineer].
 **Acceptance Criteria**:
 - Core math operations (vector additions, dot products, cross products) utilize SIMD instructions.
 - SIMD implementation leverages SoA approach exclusively without overhead on individual primitives.
@@ -66,7 +66,7 @@
 **Assignment**: Systems Engineer needs to resolve/issue/test this feature.
 
 ### [ ] Task 5: Cross-Platform Determinism Setup
-**Description**: Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm`.
+**Description**: Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm`. [Cross-Platform Determinism Setup] needs to be resolved/issued/tested by the [Systems Engineer].
 **Acceptance Criteria**:
 - Simulation yields identical results across different CPU architectures.
 - CI testing pipeline includes deterministic behavior checks.
@@ -80,7 +80,7 @@
 **Assignment**: Systems Engineer needs to resolve/issue/test this feature.
 
 ### [ ] Task 6: GPU Acceleration (Compute Shaders) Integration
-**Description**: Integrate `wgpu` (~v0.19) for GPU-accelerated compute shaders targeting massive scale simulations. `Vector3d` sent via `bytemuck` must use `#[repr(C)]` with `Pod` and `Zeroable` derives. In WGSL, use a flat `array<f32>` (indexing by 3) instead of `array<vec3<f32>>`.
+**Description**: Integrate `wgpu` (~v0.19) for GPU-accelerated compute shaders targeting massive scale simulations. `Vector3d` sent via `bytemuck` must use `#[repr(C)]` with `Pod` and `Zeroable` derives. In WGSL, use a flat `array<f32>` (indexing by 3) instead of `array<vec3<f32>>`. [GPU Acceleration (Compute Shaders) Integration] needs to be resolved/issued/tested by the [Graphics Engineer].
 **Acceptance Criteria**:
 - Basic WGPU context is established and integrated into the build.
 - A prototype compute shader runs and passes data back to the CPU physics pipeline.
