@@ -1,46 +1,12 @@
-use crate::{geometry::polygon::Polygon, physics::components::RigidBodyComponents};
-use rayon::prelude::*;
-use wide::f32x4;
-use crate::geometry::vector::Vector3d;
-use crate::physics::ccd::calculate_toi_sphere_sphere;
+import re
 
-pub struct World {
-    pub bodies: RigidBodyComponents,
-    pub time_step: f32,
-    pub next_entity: usize,
+with open("src/physics/world.rs", "r") as f:
+    content = f.read()
 
-    // SoA (Struct of Arrays) layout for DOD
-    pub positions: Vec<Vector3d>,
-    pub velocities: Vec<Vector3d>,
-    pub accelerations: Vec<Vector3d>,
-    pub forces: Vec<Vector3d>,
-    pub masses: Vec<f32>,
-    pub shapes: Vec<Polygon>,
-    pub active_entities: Vec<bool>, // true if entity is active
-}
+# Pattern to find the current step method from dt down to the end of the for_each closure
+pattern = re.compile(r"        let dt = self\.time_step;.*?                \*force = Vector3d::zero\(\);\n            }\);\n", re.DOTALL)
 
-impl World {
-    pub fn new(time_step: f32) -> Self {
-        Self {
-            bodies: RigidBodyComponents::new(),
-            time_step,
-            next_entity: 0,
-            positions: Vec::new(),
-            velocities: Vec::new(),
-            accelerations: Vec::new(),
-            forces: Vec::new(),
-            masses: Vec::new(),
-            shapes: Vec::new(),
-            active_entities: Vec::new(),
-        }
-    }
-
-    pub fn add_body(&mut self, shape: Polygon, mass: f32) {
-        self.bodies.push(shape, mass);
-    }
-
-    pub fn step(&mut self) {
-        let dt = self.time_step;
+replacement = """        let dt = self.time_step;
         let dt_simd = f32x4::splat(dt);
         let gravity = crate::physics::constants::GRAVITY;
         let grav_x = f32x4::splat(gravity.x);
@@ -131,42 +97,9 @@ impl World {
 
                 self.bodies.forces[i] = Vector3d::zero();
             }
-        }
+        }\n"""
 
-        // CCD phase (Basic n^2 implementation for spheres for demonstration, normally would use broadphase)
-        let num_bodies = self.bodies.len();
-        for i in 0..num_bodies {
-            for j in (i + 1)..num_bodies {
-                // To do exact sphere-sphere CCD we need a center and radius.
-                // Since bodies use Polygons, we'll approximate using the first vertex as center and a fixed radius.
-                // In a full implementation, the components would store a bounding sphere radius.
-                if self.bodies.shapes[i].vertices.is_empty() || self.bodies.shapes[j].vertices.is_empty() { continue; }
+new_content = pattern.sub(replacement, content)
 
-                let p1 = self.bodies.shapes[i].vertices[0];
-                let v1 = self.bodies.velocities[i];
-                let r1 = 1.0; // Approximation
-
-                let p2 = self.bodies.shapes[j].vertices[0];
-                let v2 = self.bodies.velocities[j];
-                let r2 = 1.0; // Approximation
-
-                if let Some(toi) = calculate_toi_sphere_sphere(p1, v1, r1, p2, v2, r2, dt) {
-                    // Stop the bodies exactly at the time of impact to prevent tunneling.
-                    // This is a basic response - zero out velocities along the collision normal.
-                    // A full solver would compute collision response at TOI.
-                    let collision_normal = (p1.add(&v1.scale(toi * dt))).subtract(&p2.add(&v2.scale(toi * dt))).normalize();
-
-                    let v1_proj = self.bodies.velocities[i].dot(&collision_normal);
-                    let v2_proj = self.bodies.velocities[j].dot(&collision_normal);
-
-                    if v1_proj < 0.0 {
-                        self.bodies.velocities[i] = self.bodies.velocities[i].subtract(&collision_normal.scale(v1_proj));
-                    }
-                    if v2_proj > 0.0 {
-                        self.bodies.velocities[j] = self.bodies.velocities[j].subtract(&collision_normal.scale(v2_proj));
-                    }
-                }
-            }
-        }
-    }
-}
+with open("src/physics/world.rs", "w") as f:
+    f.write(new_content)
