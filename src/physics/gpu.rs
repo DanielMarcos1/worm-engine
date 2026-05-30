@@ -118,7 +118,7 @@ impl GpuContext {
         );
 
         // Submit the commands to the queue
-        let submission_index = self.queue.submit(Some(encoder.finish()));
+        let _submission_index = self.queue.submit(Some(encoder.finish()));
 
         // Map the staging buffer so we can read it on CPU
         let buffer_slice = staging_buffer.slice(..);
