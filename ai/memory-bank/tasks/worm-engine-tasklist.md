@@ -20,7 +20,7 @@
 - src/physics/world.rs
 
 **Reference**: Issue Task 1 CCD
-**Assignment**: Physics Engineer needs to resolve/issue/test this feature.
+**Assigned Agency Role**: **Physics Engineer** needs to resolve/issue/test this feature.
 
 ### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
 **Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
@@ -35,7 +35,7 @@
 - src/physics/components.rs
 
 **Reference**: Issue Task 2 DOD
-**Assignment**: Architecture Lead needs to resolve/issue/test this feature.
+**Assigned Agency Role**: **Architecture Lead** needs to resolve/issue/test this feature.
 
 ### [ ] Task 3: Multithreading Implementation
 **Description**: Integrate `rayon` for task-based parallelism. Refactor parallel iteration over large mutable SoA arrays in `World::step` to chain `.par_iter_mut().zip(...)` instead of passing tuples.
@@ -49,7 +49,7 @@
 - src/physics/world.rs
 
 **Reference**: Issue Task 3 SIMD (Part 1 - Rayon)
-**Assignment**: Systems Engineer needs to resolve/issue/test this feature.
+**Assigned Agency Role**: **Systems Engineer** needs to resolve/issue/test this feature.
 
 ### [ ] Task 4: SIMD Vectorization Implementation
 **Description**: Integrate `wide` for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`.
@@ -63,7 +63,7 @@
 - src/physics/world.rs
 
 **Reference**: Issue Task 3 SIMD (Part 2 - SIMD)
-**Assignment**: Systems Engineer needs to resolve/issue/test this feature.
+**Assigned Agency Role**: **Systems Engineer** needs to resolve/issue/test this feature.
 
 ### [ ] Task 5: Cross-Platform Determinism Setup
 **Description**: Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm`.
@@ -77,7 +77,7 @@
 - src/physics/constants.rs
 
 **Reference**: Issue Task 4 Determinism
-**Assignment**: Systems Engineer needs to resolve/issue/test this feature.
+**Assigned Agency Role**: **Systems Engineer** needs to resolve/issue/test this feature.
 
 ### [ ] Task 6: GPU Acceleration (Compute Shaders) Integration
 **Description**: Integrate `wgpu` (~v0.19) for GPU-accelerated compute shaders targeting massive scale simulations. `Vector3d` sent via `bytemuck` must use `#[repr(C)]` with `Pod` and `Zeroable` derives. In WGSL, use a flat `array<f32>` (indexing by 3) instead of `array<vec3<f32>>`.
@@ -92,7 +92,7 @@
 - shaders/compute.wgsl
 
 **Reference**: Issue Task 5 GPU
-**Assignment**: Graphics Engineer needs to resolve/issue/test this feature.
+**Assigned Agency Role**: **Graphics Engineer** needs to resolve/issue/test this feature.
 
 ## Quality Requirements
 - [ ] Must pass `cargo check` cleanly
