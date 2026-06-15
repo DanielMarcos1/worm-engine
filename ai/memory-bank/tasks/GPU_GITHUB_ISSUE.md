@@ -7,7 +7,7 @@ assignees: ''
 ---
 
 ## Description
-Future-proof the engine by integrating WGPU for GPU-accelerated compute shaders, initially targeting massive scale simulations like soft-bodies or fluids.
+Future-proof the engine by integrating WGPU (~v0.19) for GPU-accelerated compute shaders, initially targeting massive scale simulations like soft-bodies or fluids.
 
 ## Acceptance Criteria
 - Basic WGPU context is established and integrated into the build.

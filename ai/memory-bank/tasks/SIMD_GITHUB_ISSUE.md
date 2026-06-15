@@ -7,11 +7,11 @@ assignees: ''
 ---
 
 ## Description
-Integrate `rayon` for task-based parallelism and `std::simd` for vectorizing math operations in the physics pipeline.
+Integrate `rayon` for task-based parallelism and `wide` (instead of `std::simd` per requirements) for vectorizing math operations in the physics pipeline.
 
 ## Acceptance Criteria
 - Engine scales linearly up to 16 threads on supported hardware.
-- Core math operations (vector additions, dot products, cross products) utilize SIMD instructions.
+- Core math operations (vector additions, dot products, cross products) utilize SIMD instructions using the `wide` crate.
 - Thread synchronization does not introduce unresolvable latency.
 
 ## Assigned Agency Role
