@@ -1,26 +1,24 @@
----
-name: Continuous Collision Detection (CCD) Implementation
-about: Implement CCD to prevent high-velocity tunneling.
-title: 'Continuous Collision Detection (CCD) Implementation'
-labels: 'enhancement, physics'
-assignees: ''
----
+# Continuous Collision Detection (CCD) Implementation
 
-## Description
+## Labels
+enhancement, physics
+
+## Body
+**Description**:
 Implement Continuous Collision Detection to prevent "tunneling" at high velocities. This involves calculating time of impact (TOI) between moving bodies.
 
-## Acceptance Criteria
+**Acceptance Criteria**:
 - 0% tunneling observed at velocities up to 1000m/s.
 - CCD pipeline integrates with the existing collision detection system.
 - Performance impact remains within acceptable bounds for high-speed simulations.
 
-## Assigned Agency Role
+**Assigned Agency Role**:
 **Physics Engineer** needs to resolve/issue/test this feature.
 
-## Files to Create/Edit
+**Files to Create/Edit**:
 - src/physics/ccd.rs
 - src/physics/mod.rs
 - src/physics/world.rs
 
-## Reference
+**Reference**:
 Tier 1 Projects - Continuous Collision Detection (CCD)
