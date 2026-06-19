@@ -13,7 +13,7 @@ pub fn update(components: &mut RigidBodyComponents, index: usize, dt: f32) {
     let mass = components.masses[index];
     let force = components.forces[index];
 
-    let mut accel = force.scale(1.0 / mass);
+    let accel = force.scale(1.0 / mass);
     components.accelerations[index] = accel;
 
     let mut vel = components.velocities[index];
