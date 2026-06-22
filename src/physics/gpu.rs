@@ -23,21 +23,21 @@ impl GpuContext {
             .ok()?;
 
         let (device, queue) = adapter
-            .request_device(
-                &wgpu::DeviceDescriptor {
-                    label: Some("Worm Engine Compute Device"),
-                    required_features: wgpu::Features::empty(),
-                    required_limits: wgpu::Limits::downlevel_defaults(),
-                    memory_hints: wgpu::MemoryHints::Performance,
-                    ..Default::default()
-                },
-            )
+            .request_device(&wgpu::DeviceDescriptor {
+                label: Some("Worm Engine Compute Device"),
+                required_features: wgpu::Features::empty(),
+                required_limits: wgpu::Limits::downlevel_defaults(),
+                memory_hints: wgpu::MemoryHints::Performance,
+                ..Default::default()
+            })
             .await
             .ok()?;
 
         let shader = device.create_shader_module(wgpu::ShaderModuleDescriptor {
             label: Some("Compute Shader"),
-            source: wgpu::ShaderSource::Wgsl(Cow::Borrowed(include_str!("../../shaders/compute.wgsl"))),
+            source: wgpu::ShaderSource::Wgsl(Cow::Borrowed(include_str!(
+                "../../shaders/compute.wgsl"
+            ))),
         });
 
         let compute_pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
@@ -118,7 +118,7 @@ impl GpuContext {
         );
 
         // Submit the commands to the queue
-        let submission_index = self.queue.submit(Some(encoder.finish()));
+        let _submission_index = self.queue.submit(Some(encoder.finish()));
 
         // Map the staging buffer so we can read it on CPU
         let buffer_slice = staging_buffer.slice(..);
@@ -126,10 +126,12 @@ impl GpuContext {
         buffer_slice.map_async(wgpu::MapMode::Read, move |v| sender.send(v).unwrap());
 
         // Wait for mapping to finish
-        self.device.poll(wgpu::PollType::Wait {
-            submission_index: None,
-            timeout: Some(Duration::from_secs(5)),
-        }).unwrap();
+        self.device
+            .poll(wgpu::PollType::Wait {
+                submission_index: None,
+                timeout: Some(Duration::from_secs(5)),
+            })
+            .unwrap();
 
         if let Ok(Ok(())) = receiver.await {
             let data = buffer_slice.get_mapped_range();

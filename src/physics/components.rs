@@ -1,4 +1,4 @@
-use crate::geometry::{vector::Vector3d, polygon::Polygon};
+use crate::geometry::{polygon::Polygon, vector::Vector3d};
 
 #[derive(Debug, Default)]
 pub struct RigidBodyComponents {
