@@ -22,7 +22,7 @@
 **Reference**: Issue Task 1 CCD
 **Assignment**: Physics Engineer needs to resolve/issue/test this feature.
 
-### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
+### [x] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
 **Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
 **Acceptance Criteria**:
 - Memory layout is optimized for cache coherency.
