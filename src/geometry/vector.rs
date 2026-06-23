@@ -1,5 +1,6 @@
-use bytemuck::{Pod, Zeroable};
 use crate::physics::math::DeterministicMath;
+use bytemuck::{Pod, Zeroable};
+use wide::f32x4;
 
 #[repr(C)]
 #[derive(Debug, Clone, Copy, Pod, Zeroable)]
