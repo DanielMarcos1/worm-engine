@@ -33,3 +33,30 @@
 **Review Date**: 2023-10-26
 **Strategic Leadership**: Executive-level vision with operational excellence
 **Portfolio ROI**: 35%+ return with balanced risk management
+---
+## GitHub Issue: Strategic Scope & SOTA Alignment
+
+**Title:** Strategic Initiative: Worm Engine SOTA Integration Plan
+**Labels:** strategic, epic
+
+### Description
+To evolve the Worm Engine from a functional 3D physics engine into a state-of-the-art (SOTA) solution, we must strategically integrate high-performance features while protecting our core 1.0.0 release schedule. This epic outlines the necessary actions to secure our competitive advantage and maintain our 95% on-time delivery benchmark with a targeted 25%+ portfolio ROI.
+
+### Required SOTA Initiatives
+1. **Continuous Collision Detection (CCD)**: Implement CCD to prevent high-velocity tunneling. Calculate time of impact (TOI) between moving bodies. (0% tunneling at 1000m/s).
+2. **Data-Oriented Design (DOD) & ECS Compatibility**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs. Memory layout optimized for cache coherency, API integration in under 2 hours. Core systems operate on flat arrays.
+3. **Multithreading and SIMD Vectorization**: Integrate `rayon` for task-based parallelism and `std::simd` for vectorizing math operations in the physics pipeline. Engine scales linearly up to 16 threads. Core math operations utilize SIMD instructions.
+4. **Cross-Platform Determinism**: Implement strict floating-point math control and deterministic solver execution across multiple architectures. Simulation yields identical results across different CPU architectures.
+5. **GPU Acceleration**: Future-proof the engine by integrating WGPU for GPU-accelerated compute shaders, initially targeting massive scale simulations like soft-bodies or fluids.
+
+### Actionable Development Tasks
+- Continuous Collision Detection (CCD) Implementation needs to be resolved/issued/tested by the Physics Engineer.
+- Data-Oriented Design (DOD) & ECS Refactoring needs to be resolved/issued/tested by the Architecture Lead.
+- Multithreading and SIMD Vectorization needs to be resolved/issued/tested by the Systems Engineer.
+- Cross-Platform Determinism Setup needs to be resolved/issued/tested by the Systems Engineer.
+- GPU Acceleration (Compute Shaders) Integration needs to be resolved/issued/tested by the Graphics Engineer.
+
+### Acceptance Criteria
+- Portfolio ROI remains above 25%.
+- Core 1.0.0 features maintain 95% on-time delivery.
+- SOTA features are implemented as modular add-ons (where possible) to avoid scope creep.
