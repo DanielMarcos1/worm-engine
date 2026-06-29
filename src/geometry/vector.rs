@@ -1,5 +1,6 @@
 use bytemuck::{Pod, Zeroable};
 use crate::physics::math::DeterministicMath;
+use wide::f32x4;
 
 #[repr(C)]
 #[derive(Debug, Clone, Copy, Pod, Zeroable)]
@@ -26,13 +27,13 @@ impl Vector3d {
     // Internal helper to get SIMD representation (padding with 0.0)
     #[inline(always)]
     fn to_simd(&self) -> f32x4 {
-        f32x4::new([self.x, self.y, self.z, 0.0])
+        f32x4::from([self.x, self.y, self.z, 0.0])
     }
 
     // Internal helper to create Vector3d from SIMD
     #[inline(always)]
     fn from_simd(simd: f32x4) -> Self {
-        let arr = simd.to_array();
+        let arr: [f32; 4] = simd.into();
         Self {
             x: arr[0],
             y: arr[1],
@@ -73,7 +74,7 @@ impl Vector3d {
     // Look at where the vector is pointing at and it's relative direction compared to other vectors
     pub fn dot(&self, other: &Vector3d) -> f32 {
         let mul = self.to_simd() * other.to_simd();
-        let arr = mul.to_array();
+        let arr: [f32; 4] = mul.into();
         arr[0] + arr[1] + arr[2]
     }
 
