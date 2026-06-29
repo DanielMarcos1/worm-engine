@@ -1,5 +1,10 @@
 # Strategic Initiative: Elevating Worm Engine to State-of-the-Art (SOTA) Market Leadership
 
+## Labels
+enhancement, strategic, architecture, v1.0.0, performance
+
+## Body
+
 ## 🎯 Executive Summary
 **Strategic Objectives**: Evolve the Worm Engine from a functional 3D physics engine into a state-of-the-art, high-performance solution capable of capturing top-tier market share in the simulation and gaming sectors.
 **Portfolio Value**: Projected 35% ROI through competitive licensing and integration capabilities, ensuring we maintain our 95% on-time delivery benchmark for the 1.0.0 roadmap.
@@ -21,7 +26,7 @@ While our current 1.0.0 roadmap (Rigid/Soft bodies, Collisions, Integrators) lay
   - *Expected ROI*: 40% increase in integration adoption by modern game studios.
 
 - **Multithreading and SIMD Vectorization**:
-  - *Strategic Impact*: Maximizes CPU utilization. Leveraging Rust's `rayon` and `std::simd` will provide the hyper-performance required to compete with industry giants (Havok, Jolt).
+  - *Strategic Impact*: Maximizes CPU utilization. Leveraging Rust's `rayon` and `wide` crate for SIMD vectorization over SoA chunks will provide the hyper-performance required to compete with industry giants (Havok, Jolt).
   - *Resource Allocation & Metrics*: R&D innovation pipeline budget; success measured by linear scaling up to 16 threads.
 
 ### Tier 2 Projects (Growth Initiatives):
@@ -31,7 +36,10 @@ While our current 1.0.0 roadmap (Rigid/Soft bodies, Collisions, Integrators) lay
 
 - **GPU Acceleration (Compute Shaders)**:
   - *Market Impact*: Future-proofing for massive scale simulations (soft-bodies, fluids) via WGPU integration.
-  - *Dependencies & Risks*: Requires stabilization of the core CPU physics pipeline first. Risk of scope creep.
+  - *Dependencies & Risks*: Requires stabilization of the core CPU physics pipeline first. Risk of scope creep. WGSL memory alignment must strictly use flat `array<f32>` structures to avoid crashes.
+
+## Assigned Agency Role
+This overarching strategic initiative requires coordination across the **Engineering Leadership** and **Systems Architecture** team to orchestrate these technical upgrades. Specific tasks will be delegated to **Physics Engineers**, **Architecture Leads**, and **Systems Engineers**.
 
 ## 🚀 Resource Allocation Strategy
 **Team Capacity**: Reallocating 30% of our R&D capacity from general API design to specialized algorithmic optimization (SIMD/Multithreading).
