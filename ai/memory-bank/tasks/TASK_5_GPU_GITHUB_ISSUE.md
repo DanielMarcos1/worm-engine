@@ -1,26 +1,27 @@
----
-name: GPU Acceleration (Compute Shaders) Integration
-about: Integrate WGPU for GPU-accelerated compute shaders.
-title: 'GPU Acceleration (Compute Shaders) Integration'
-labels: 'gpu, wgpu'
-assignees: ''
----
+# Title
+GPU Acceleration (Compute Shaders) Integration
 
-## Description
+## Labels
+gpu, wgpu
+
+## Body
+### Description
 Future-proof the engine by integrating WGPU for GPU-accelerated compute shaders, initially targeting massive scale simulations like soft-bodies or fluids.
 
-## Acceptance Criteria
+### Acceptance Criteria
 - Basic WGPU context is established and integrated into the build.
 - A prototype compute shader runs and passes data back to the CPU physics pipeline.
 - CPU pipeline remains stable during GPU execution.
+- Avoid 16-byte alignment crashes in WGSL shaders by using flat `array<f32>` instead of `vec3<f32>`.
+- Data sent via `bytemuck` (e.g., `Vector3d`) must use `#[repr(C)]` with `Pod` and `Zeroable` derives.
 
-## Assigned Agency Role
+### Assigned Agency Role
 **Graphics Engineer** needs to resolve/issue/test this feature.
 
-## Files to Create/Edit
+### Files to Create/Edit
 - Cargo.toml
 - src/physics/gpu.rs
 - shaders/compute.wgsl
 
-## Reference
+### Reference
 Tier 2 Projects - GPU Acceleration (Compute Shaders)
