@@ -1,28 +1,28 @@
-use crate::{geometry::vector::Vector3d, physics::{constants::GRAVITY, components::RigidBodyComponents}};
+use crate::{geometry::vector::Vector3d, physics::{constants::GRAVITY, world::World}};
 
-pub fn apply_force(components: &mut RigidBodyComponents, index: usize, force: Vector3d) {
-    components.forces[index] = components.forces[index].add(&force);
+pub fn apply_force(world: &mut World, index: usize, force: Vector3d) {
+    world.forces[index] = world.forces[index].add(&force);
 }
 
-pub fn apply_gravity(components: &mut RigidBodyComponents, index: usize) {
-    let force = GRAVITY.scale(components.masses[index]);
-    components.forces[index] = components.forces[index].add(&force);
+pub fn apply_gravity(world: &mut World, index: usize) {
+    let force = GRAVITY.scale(world.masses[index]);
+    world.forces[index] = world.forces[index].add(&force);
 }
 
-pub fn update(components: &mut RigidBodyComponents, index: usize, dt: f32) {
-    let mass = components.masses[index];
-    let force = components.forces[index];
+pub fn update(world: &mut World, index: usize, dt: f32) {
+    let mass = world.masses[index];
+    let force = world.forces[index];
 
-    let mut accel = force.scale(1.0 / mass);
-    components.accelerations[index] = accel;
+    let accel = force.scale(1.0 / mass);
+    world.accelerations[index] = accel;
 
-    let mut vel = components.velocities[index];
+    let mut vel = world.velocities[index];
     vel = vel.add(&accel.scale(dt));
-    components.velocities[index] = vel;
+    world.velocities[index] = vel;
 
-    for vertex in &mut components.shapes[index].vertices {
+    for vertex in &mut world.shapes[index].vertices {
         *vertex = vertex.add(&vel.scale(dt));
     }
 
-    components.forces[index] = Vector3d::zero();
+    world.forces[index] = Vector3d::zero();
 }
