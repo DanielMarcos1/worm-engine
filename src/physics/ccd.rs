@@ -43,7 +43,7 @@ pub fn calculate_toi_sphere_sphere(
     // We want the smallest positive root
     let t = (-b - discriminant.d_sqrt()) / (2.0 * a);
 
-    if t >= 0.0 && t <= 1.0 {
+    if (0.0..=1.0).contains(&t) {
         Some(t)
     } else {
         None
