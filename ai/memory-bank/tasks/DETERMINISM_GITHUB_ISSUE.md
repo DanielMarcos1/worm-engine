@@ -7,7 +7,7 @@ assignees: ''
 ---
 
 ## Description
-Implement strict floating-point math control and deterministic solver execution across multiple architectures.
+Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm` as per project constraints.
 
 ## Acceptance Criteria
 - Simulation yields identical results across different CPU architectures.
