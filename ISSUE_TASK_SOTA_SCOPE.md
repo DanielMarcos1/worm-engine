@@ -8,13 +8,13 @@
 
 ## Project Portfolio Overview
 **Tier 1 Projects** (Strategic Priority):
-- **Continuous Collision Detection (CCD)**: [Budget: 15% R&D, Timeline: v0.4.0, Expected ROI: 20% market share increase, Strategic Impact: Prevents "tunneling" at high velocities (0% tunneling at 1000m/s). Critical for fast-paced action titles and AAA adoption.]
+- **Continuous Collision Detection (CCD)**: [Budget: 15% R&D, Timeline: v0.4.0, Expected ROI: 20% market share increase, Strategic Impact: Prevents tunneling at high velocities (0% tunneling at 1000m/s). Critical for fast-paced action titles and AAA adoption.]
 - *Resource allocation and success metrics*: 2 dedicated physics engineers; success measured by 0% tunneling at 1000m/s velocities. Implemented as a modular add-on to not block 1.0.0.
 
 - **Data-Oriented Design (DOD) & ECS Compatibility**: [Budget: 25% R&D, Timeline: v0.6.0, Expected ROI: 40% increase in integration adoption, Strategic Impact: Ensures seamless integration with modern ECS architectures (Bevy, Flecs). Lowers the barrier to entry for strategic partners.]
 - *Resource allocation and success metrics*: 1 architecture lead; success measured by API integration time under 2 hours. Front-loading investment to minimize technical debt.
 
-- **Multithreading and SIMD Vectorization**: [Budget: 20% R&D, Timeline: v0.6.0, Expected ROI: Secures performance leadership, Strategic Impact: Maximizes CPU utilization using `rayon` and `std::simd`. Essential to compete with Havok/Jolt.]
+- **Multithreading and SIMD Vectorization**: [Budget: 20% R&D, Timeline: v0.6.0, Expected ROI: Secures performance leadership, Strategic Impact: Maximizes CPU utilization using rayon and std::simd. Essential to compete with Havok/Jolt.]
 - *Resource allocation and success metrics*: Systems Engineering team; success measured by linear scaling up to 16 threads.
 
 **Tier 2 Projects** (Growth Initiatives):
