@@ -22,7 +22,7 @@
 **Investment Focus**:
 1. **DOD & ECS Refactoring**: Front-load investment in architectural refactoring to convert core structures (e.g., rigid body updates) to flat arrays/SOA. *[Architecture Lead]*
 2. **Continuous Collision Detection (CCD)**: Develop a modular TOI calculation pipeline to eliminate tunneling at 1000m/s. *[Physics Engineer]*
-3. **Multithreading & SIMD**: Integrate `rayon` and `std::simd` to scale linearly up to 16 threads. *[Systems Engineer]*
+3. **Multithreading & SIMD**: Integrate `rayon` and `wide` to scale linearly up to 16 threads. *[Systems Engineer]*
 
 **Market Opportunities**: Achieving these Tier 1 priorities will establish the Worm Engine as a top 3 benchmark performer among open-source Rust physics engines, capturing the high-speed and ECS-native game development sectors.
 **Capability Building**: Focus on robust CI testing for cross-platform determinism and fallback mechanisms for non-deterministic math.

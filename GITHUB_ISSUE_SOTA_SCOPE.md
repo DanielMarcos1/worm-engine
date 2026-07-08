@@ -14,7 +14,7 @@
 - **Data-Oriented Design (DOD) & ECS Compatibility**: [Budget: 25% R&D, Timeline: v0.6.0, Expected ROI: 40% increase in integration adoption, Strategic Impact: Ensures seamless integration with modern ECS architectures (Bevy, Flecs). Lowers the barrier to entry for strategic partners.]
 - *Resource allocation and success metrics*: 1 architecture lead; success measured by API integration time under 2 hours. Front-loading investment to minimize technical debt.
 
-- **Multithreading and SIMD Vectorization**: [Budget: 20% R&D, Timeline: v0.6.0, Expected ROI: Secures performance leadership, Strategic Impact: Maximizes CPU utilization using `rayon` and `std::simd`. Essential to compete with Havok/Jolt.]
+- **Multithreading and SIMD Vectorization**: [Budget: 20% R&D, Timeline: v0.6.0, Expected ROI: Secures performance leadership, Strategic Impact: Maximizes CPU utilization using `rayon` and `wide`. Essential to compete with Havok/Jolt.]
 - *Resource allocation and success metrics*: Systems Engineering team; success measured by linear scaling up to 16 threads.
 
 **Tier 2 Projects** (Growth Initiatives):
