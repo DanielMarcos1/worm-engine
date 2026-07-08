@@ -95,8 +95,8 @@
 **Assignment**: GPU Acceleration (Compute Shaders) Integration needs to be resolved/issued/tested by the Graphics Engineer
 
 ## Quality Requirements
-- [ ] Must pass `cargo check` cleanly
-- [ ] Must pass `cargo test` suite
+- [x] Must pass `cargo check` cleanly
+- [x] Must pass `cargo test` suite
 - [ ] No background processes in any commands - NEVER append `&`
 - [ ] Iterating multiple mutable SoA arrays in `rayon` must chain `.par_iter_mut().zip(...)`
 - [ ] WGSL shaders must avoid 16-byte alignment crashes by using flat `array<f32>` and Rust structs must use `#[repr(C)]`, `Pod`, and `Zeroable`.
