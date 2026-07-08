@@ -1,3 +1,4 @@
+use wide::f32x4;
 use bytemuck::{Pod, Zeroable};
 use crate::physics::math::DeterministicMath;
 
@@ -26,7 +27,7 @@ impl Vector3d {
     // Internal helper to get SIMD representation (padding with 0.0)
     #[inline(always)]
     fn to_simd(&self) -> f32x4 {
-        f32x4::new([self.x, self.y, self.z, 0.0])
+        f32x4::from([self.x, self.y, self.z, 0.0])
     }
 
     // Internal helper to create Vector3d from SIMD

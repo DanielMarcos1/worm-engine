@@ -2,7 +2,7 @@
 
 ## Executive Summary
 **Strategic Objectives**: Evolve the Worm Engine from a functional 3D physics engine into a state-of-the-art (SOTA), high-performance solution. Align our technical milestones to deliver hyper-performance, deterministic simulation, and memory efficiency, positioning us for the anticipated market shift toward highly scalable, data-oriented multiplayer experiences.
-**Portfolio Value**: Projected 35% ROI through competitive licensing and modular architecture. Maintains our 95% on-time delivery benchmark for the core v1.0.0 roadmap milestones.
+**Portfolio Value**: Projected 25%+ ROI through competitive licensing and modular architecture. Maintains our 95% on-time delivery benchmark for the core v1.0.0 roadmap milestones.
 **Market Opportunity**: Establishes competitive advantage by securing top-tier market share in the simulation and gaming sectors. Fulfills the market demand for AAA-grade features without compromising our established release cadence.
 **Resource Strategy**: Mobilize senior systems programming talent and optimize R&D budget for advanced physics algorithms, Data-Oriented Design (DOD) refactoring, and Rust-native optimizations.
 
@@ -14,7 +14,7 @@
 - **Data-Oriented Design (DOD) & ECS Compatibility**: [Budget: 25% R&D, Timeline: v0.6.0, Expected ROI: 40% increase in integration adoption, Strategic Impact: Ensures seamless integration with modern ECS architectures (Bevy, Flecs). Lowers the barrier to entry for strategic partners.]
 - *Resource allocation and success metrics*: 1 architecture lead; success measured by API integration time under 2 hours. Front-loading investment to minimize technical debt.
 
-- **Multithreading and SIMD Vectorization**: [Budget: 20% R&D, Timeline: v0.6.0, Expected ROI: Secures performance leadership, Strategic Impact: Maximizes CPU utilization using `rayon` and `std::simd`. Essential to compete with Havok/Jolt.]
+- **Multithreading and SIMD Vectorization**: [Budget: 20% R&D, Timeline: v0.6.0, Expected ROI: Secures performance leadership, Strategic Impact: Maximizes CPU utilization using `rayon` and `wide crate`. Essential to compete with Havok/Jolt.]
 - *Resource allocation and success metrics*: Systems Engineering team; success measured by linear scaling up to 16 threads.
 
 **Tier 2 Projects** (Growth Initiatives):
@@ -41,4 +41,4 @@
 **Studio Producer**: Executive Creative Strategist
 **Review Date**: 2023-10-26
 **Strategic Leadership**: Executive-level vision with operational excellence
-**Portfolio ROI**: 35%+ return with balanced risk management
+**Portfolio ROI**: 25%+ return with balanced risk management
