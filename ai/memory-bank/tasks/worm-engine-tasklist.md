@@ -7,7 +7,7 @@
 
 ## Development Tasks
 
-### [ ] Task 1: Continuous Collision Detection (CCD)
+### [x] Task 1: Continuous Collision Detection (CCD)
 **Description**: Implement Continuous Collision Detection to prevent "tunneling" at high velocities. This involves calculating time of impact (TOI) between moving bodies.
 **Acceptance Criteria**:
 - 0% tunneling observed at velocities up to 1000m/s.
@@ -22,7 +22,7 @@
 **Reference**: Issue Task 1 CCD
 **Assignment**: Continuous Collision Detection (CCD) needs to be resolved/issued/tested by the Physics Engineer
 
-### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
+### [x] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
 **Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
 **Acceptance Criteria**:
 - Memory layout is optimized for cache coherency.
@@ -37,7 +37,7 @@
 **Reference**: Issue Task 2 DOD
 **Assignment**: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes) needs to be resolved/issued/tested by the Architecture Lead
 
-### [ ] Task 3: Multithreading Implementation
+### [x] Task 3: Multithreading Implementation
 **Description**: Integrate `rayon` for task-based parallelism. Refactor parallel iteration over large mutable SoA arrays in `World::step` to chain `.par_iter_mut().zip(...)` instead of passing tuples.
 **Acceptance Criteria**:
 - Engine scales linearly up to 16 threads on supported hardware.
@@ -51,7 +51,7 @@
 **Reference**: Issue Task 3 SIMD (Part 1 - Rayon)
 **Assignment**: Multithreading Implementation needs to be resolved/issued/tested by the Systems Engineer
 
-### [ ] Task 4: SIMD Vectorization Implementation
+### [x] Task 4: SIMD Vectorization Implementation
 **Description**: Integrate `wide` for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`.
 **Acceptance Criteria**:
 - Core math operations (vector additions, dot products, cross products) utilize SIMD instructions.
@@ -65,7 +65,7 @@
 **Reference**: Issue Task 3 SIMD (Part 2 - SIMD)
 **Assignment**: SIMD Vectorization Implementation needs to be resolved/issued/tested by the Systems Engineer
 
-### [ ] Task 5: Cross-Platform Determinism Setup
+### [x] Task 5: Cross-Platform Determinism Setup
 **Description**: Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm`.
 **Acceptance Criteria**:
 - Simulation yields identical results across different CPU architectures.
@@ -79,7 +79,7 @@
 **Reference**: Issue Task 4 Determinism
 **Assignment**: Cross-Platform Determinism Setup needs to be resolved/issued/tested by the Systems Engineer
 
-### [ ] Task 6: GPU Acceleration (Compute Shaders) Integration
+### [x] Task 6: GPU Acceleration (Compute Shaders) Integration
 **Description**: Integrate `wgpu` (~v0.19) for GPU-accelerated compute shaders targeting massive scale simulations. `Vector3d` sent via `bytemuck` must use `#[repr(C)]` with `Pod` and `Zeroable` derives. In WGSL, use a flat `array<f32>` (indexing by 3) instead of `array<vec3<f32>>`.
 **Acceptance Criteria**:
 - Basic WGPU context is established and integrated into the build.
@@ -95,11 +95,11 @@
 **Assignment**: GPU Acceleration (Compute Shaders) Integration needs to be resolved/issued/tested by the Graphics Engineer
 
 ## Quality Requirements
-- [ ] Must pass `cargo check` cleanly
-- [ ] Must pass `cargo test` suite
-- [ ] No background processes in any commands - NEVER append `&`
-- [ ] Iterating multiple mutable SoA arrays in `rayon` must chain `.par_iter_mut().zip(...)`
-- [ ] WGSL shaders must avoid 16-byte alignment crashes by using flat `array<f32>` and Rust structs must use `#[repr(C)]`, `Pod`, and `Zeroable`.
+- [x] Must pass `cargo check` cleanly
+- [x] Must pass `cargo test` suite
+- [x] No background processes in any commands - NEVER append `&`
+- [x] Iterating multiple mutable SoA arrays in `rayon` must chain `.par_iter_mut().zip(...)`
+- [x] WGSL shaders must avoid 16-byte alignment crashes by using flat `array<f32>` and Rust structs must use `#[repr(C)]`, `Pod`, and `Zeroable`.
 
 ## Technical Notes
 **Development Stack**: Rust, rayon, wide, libm, wgpu (~v0.19), WGSL
