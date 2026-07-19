@@ -1,11 +1,10 @@
----
-name: Continuous Collision Detection (CCD) Implementation
-about: Implement CCD to prevent high-velocity tunneling.
-title: 'Continuous Collision Detection (CCD) Implementation'
-labels: 'enhancement, physics'
-assignees: ''
----
+# Title
+Continuous Collision Detection (CCD) Implementation
 
+## Labels
+enhancement, physics
+
+## Body
 ## Description
 Implement Continuous Collision Detection to prevent "tunneling" at high velocities. This involves calculating time of impact (TOI) between moving bodies.
 
