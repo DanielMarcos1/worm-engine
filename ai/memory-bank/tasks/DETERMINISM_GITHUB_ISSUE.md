@@ -1,11 +1,10 @@
----
-name: Cross-Platform Determinism Setup
-about: Implement deterministic execution across architectures.
-title: 'Cross-Platform Determinism Setup'
-labels: 'determinism, ci'
-assignees: ''
----
+# Title
+Cross-Platform Determinism Setup
 
+## Labels
+determinism, ci
+
+## Body
 ## Description
 Implement strict floating-point math control and deterministic solver execution across multiple architectures.
 
