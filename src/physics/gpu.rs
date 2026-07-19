@@ -104,7 +104,7 @@ impl GpuContext {
             // Dispatch enough workgroups to cover all items (divided by 3 because we process Vector3d).
             // Workgroup size in shader is 64.
             let items = (input_data.len() / 3) as u32;
-            let workgroups = (items + 63) / 64;
+            let workgroups = items.div_ceil(64);
             cpass.dispatch_workgroups(workgroups, 1, 1);
         }
 
@@ -118,7 +118,7 @@ impl GpuContext {
         );
 
         // Submit the commands to the queue
-        let submission_index = self.queue.submit(Some(encoder.finish()));
+        let _submission_index = self.queue.submit(Some(encoder.finish()));
 
         // Map the staging buffer so we can read it on CPU
         let buffer_slice = staging_buffer.slice(..);
