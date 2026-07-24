@@ -54,7 +54,7 @@
 ### [ ] Task 4: SIMD Vectorization Implementation
 **Description**: Integrate `wide` for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`.
 **Acceptance Criteria**:
-- Core math operations (vector additions, dot products, cross products) utilize SIMD instructions.
+- Core math operations (vector additions, dot products, cross products) utilize SIMD instructions via the `wide` crate.
 - SIMD implementation leverages SoA approach exclusively without overhead on individual primitives.
 
 **Files to Create/Edit**:
@@ -95,9 +95,6 @@
 **Assignment**: GPU Acceleration (Compute Shaders) Integration needs to be resolved/issued/tested by the Graphics Engineer
 
 ## Quality Requirements
-- [ ] Must pass `cargo check` cleanly
-- [ ] Must pass `cargo test` suite
-- [ ] No background processes in any commands - NEVER append `&`
 - [ ] Iterating multiple mutable SoA arrays in `rayon` must chain `.par_iter_mut().zip(...)`
 - [ ] WGSL shaders must avoid 16-byte alignment crashes by using flat `array<f32>` and Rust structs must use `#[repr(C)]`, `Pod`, and `Zeroable`.
 
