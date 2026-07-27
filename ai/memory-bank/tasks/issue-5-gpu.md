@@ -1,11 +1,8 @@
----
-name: GPU Acceleration (Compute Shaders) Integration
-about: Integrate WGPU for GPU-accelerated compute shaders.
-title: 'GPU Acceleration (Compute Shaders) Integration'
-labels: 'gpu, wgpu'
-assignees: ''
----
-
+# Title
+GPU Acceleration (Compute Shaders) Integration
+## Labels
+gpu, wgpu
+## Body
 ## Description
 Future-proof the engine by integrating WGPU for GPU-accelerated compute shaders, initially targeting massive scale simulations like soft-bodies or fluids.
 
@@ -15,7 +12,7 @@ Future-proof the engine by integrating WGPU for GPU-accelerated compute shaders,
 - CPU pipeline remains stable during GPU execution.
 
 ## Assigned Agency Role
-**Graphics Engineer** needs to resolve/issue/test this feature.
+GPU Acceleration (Compute Shaders) Integration needs to be resolved/issued/tested by the Graphics Engineer.
 
 ## Files to Create/Edit
 - Cargo.toml
