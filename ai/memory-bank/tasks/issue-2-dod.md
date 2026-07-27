@@ -1,11 +1,8 @@
----
-name: Data-Oriented Design (DOD) & ECS Refactoring
-about: Refactor core engine structures to support Data-Oriented Design.
-title: 'Data-Oriented Design (DOD) & ECS Refactoring'
-labels: 'architecture, refactoring'
-assignees: ''
----
-
+# Title
+Data-Oriented Design (DOD) & ECS Refactoring
+## Labels
+architecture, refactoring
+## Body
 ## Description
 Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
 
@@ -15,7 +12,7 @@ Refactor core engine structures to support Data-Oriented Design, making it compa
 - Core systems (e.g., rigid body updates) operate on flat arrays or similar DOD structures.
 
 ## Assigned Agency Role
-**Architecture Lead** needs to resolve/issue/test this feature.
+Data-Oriented Design (DOD) & ECS Refactoring needs to be resolved/issued/tested by the Architecture Lead.
 
 ## Files to Create/Edit
 - src/physics/rigid_body.rs

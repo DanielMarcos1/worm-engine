@@ -1,11 +1,8 @@
----
-name: Cross-Platform Determinism Setup
-about: Implement deterministic execution across architectures.
-title: 'Cross-Platform Determinism Setup'
-labels: 'determinism, ci'
-assignees: ''
----
-
+# Title
+Cross-Platform Determinism Setup
+## Labels
+determinism, ci
+## Body
 ## Description
 Implement strict floating-point math control and deterministic solver execution across multiple architectures.
 
@@ -15,7 +12,7 @@ Implement strict floating-point math control and deterministic solver execution 
 - Fallback mechanisms for non-deterministic math functions are implemented.
 
 ## Assigned Agency Role
-**Systems Engineer** needs to resolve/issue/test this feature.
+Cross-Platform Determinism Setup needs to be resolved/issued/tested by the Systems Engineer.
 
 ## Files to Create/Edit
 - src/physics/math.rs
