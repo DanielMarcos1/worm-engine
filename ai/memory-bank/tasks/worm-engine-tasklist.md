@@ -20,7 +20,7 @@
 - src/physics/world.rs
 
 **Reference**: Issue Task 1 CCD
-**Assignment**: Continuous Collision Detection (CCD) needs to be resolved/issued/tested by the Physics Engineer
+**Assignment**: Continuous Collision Detection (CCD) Implementation needs to be resolved/issued/tested by the Physics Engineer
 
 ### [ ] Task 2: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes)
 **Description**: Refactor core engine structures to support Data-Oriented Design, making it compatible with modern ECS architectures like Bevy and Flecs.
@@ -35,7 +35,7 @@
 - src/physics/components.rs
 
 **Reference**: Issue Task 2 DOD
-**Assignment**: Data-Oriented Design (DOD) & ECS Refactoring (30-60 minutes) needs to be resolved/issued/tested by the Architecture Lead
+**Assignment**: Data-Oriented Design (DOD) & ECS Refactoring needs to be resolved/issued/tested by the Architecture Lead
 
 ### [ ] Task 3: Multithreading Implementation
 **Description**: Integrate `rayon` for task-based parallelism. Refactor parallel iteration over large mutable SoA arrays in `World::step` to chain `.par_iter_mut().zip(...)` instead of passing tuples.
@@ -49,7 +49,7 @@
 - src/physics/world.rs
 
 **Reference**: Issue Task 3 SIMD (Part 1 - Rayon)
-**Assignment**: Multithreading Implementation needs to be resolved/issued/tested by the Systems Engineer
+**Assignment**: Multithreading and SIMD Vectorization needs to be resolved/issued/tested by the Systems Engineer
 
 ### [ ] Task 4: SIMD Vectorization Implementation
 **Description**: Integrate `wide` for vectorizing math operations in the physics pipeline. Defer until DOD refactoring is complete to use a Structure of Arrays (SoA) approach. Avoid applying Array of Structures (AoS) SIMD to individual math primitives like `Vector3d`.
@@ -63,7 +63,7 @@
 - src/physics/world.rs
 
 **Reference**: Issue Task 3 SIMD (Part 2 - SIMD)
-**Assignment**: SIMD Vectorization Implementation needs to be resolved/issued/tested by the Systems Engineer
+**Assignment**: Multithreading and SIMD Vectorization needs to be resolved/issued/tested by the Systems Engineer
 
 ### [ ] Task 5: Cross-Platform Determinism Setup
 **Description**: Implement strict floating-point math control and deterministic solver execution across multiple architectures using `libm`.
