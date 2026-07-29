@@ -1,4 +1,4 @@
-use crate::{geometry::polygon::Polygon, physics::components::RigidBodyComponents, physics::rigid_body};
+use crate::{geometry::polygon::Polygon, physics::components::RigidBodyComponents};
 use rayon::prelude::*;
 use wide::f32x4;
 use crate::geometry::vector::Vector3d;
@@ -10,12 +10,12 @@ pub struct World {
     pub next_entity: usize,
 
     // SoA (Struct of Arrays) layout for DOD
-    pub positions: Vec<Position>,
-    pub velocities: Vec<Velocity>,
-    pub accelerations: Vec<Acceleration>,
-    pub forces: Vec<Force>,
-    pub masses: Vec<Mass>,
-    pub shapes: Vec<Shape>,
+    pub positions: Vec<Vector3d>,
+    pub velocities: Vec<Vector3d>,
+    pub accelerations: Vec<Vector3d>,
+    pub forces: Vec<Vector3d>,
+    pub masses: Vec<f32>,
+    pub shapes: Vec<Polygon>,
     pub active_entities: Vec<bool>, // true if entity is active
 }
 
@@ -68,9 +68,9 @@ impl World {
                 let mut f_z = f32x4::from([forces[0].z, forces[1].z, forces[2].z, forces[3].z]);
 
                 // Apply gravity (F = F + mg)
-                f_x = f_x + (grav_x * mass_simd);
-                f_y = f_y + (grav_y * mass_simd);
-                f_z = f_z + (grav_z * mass_simd);
+                f_x += grav_x * mass_simd ;
+                f_y += grav_y * mass_simd ;
+                f_z += grav_z * mass_simd ;
 
                 // Calculate acceleration (a = F / m)
                 let a_x = f_x * inv_mass;
@@ -83,9 +83,9 @@ impl World {
                 let mut v_z = f32x4::from([velocities[0].z, velocities[1].z, velocities[2].z, velocities[3].z]);
 
                 // Update velocities (v = v + a * dt)
-                v_x = v_x + (a_x * dt_simd);
-                v_y = v_y + (a_y * dt_simd);
-                v_z = v_z + (a_z * dt_simd);
+                v_x += a_x * dt_simd ;
+                v_y += a_y * dt_simd ;
+                v_z += a_z * dt_simd ;
 
                 // Store back
                 let a_x_arr: [f32; 4] = a_x.into();
@@ -116,7 +116,7 @@ impl World {
             for i in start..end {
                 let mass = self.bodies.masses[i];
                 let gravity_force = crate::physics::constants::GRAVITY.scale(mass);
-                let mut force = self.bodies.forces[i].add(&gravity_force);
+                let force = self.bodies.forces[i].add(&gravity_force);
 
                 let accel = force.scale(1.0 / mass);
                 self.bodies.accelerations[i] = accel;
