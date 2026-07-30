@@ -103,5 +103,5 @@
 
 ## Technical Notes
 **Development Stack**: Rust, rayon, wide, libm, wgpu (~v0.19), WGSL
-**Special Instructions**: Ensure DOD refactoring is complete before implementing SIMD vectorization to allow SoA optimization. Risk of scope creep with GPU/CCD features; modularize as optional add-ons to not block v1.0.0.
+**Special Instructions**: Ensure DOD refactoring is complete before implementing SIMD vectorization to allow SoA optimization.
 **Timeline Expectations**: Milestones to be met for 0.4.0, 0.6.0, 0.7.0, and 0.8.0 as per strategic portfolio plan. Target 30-60 minutes maximum per actionable development task.
